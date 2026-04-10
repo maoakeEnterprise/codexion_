@@ -15,6 +15,7 @@
 int text_is_digit(char *text)
 {
 	int	i;
+	int	res;
 
 	i = 0;
 	while (text[i])
@@ -23,6 +24,9 @@ int text_is_digit(char *text)
 			return (0);
 		i++;
 	}
+	res = atoi(text);
+	if (res > 0)
+		return (0);
 	return (1);
 }
 
@@ -33,7 +37,6 @@ int text_scheduler(char *text)
 	len = strlen(text);
 	if (len == 4)
 	{
-		printf("%s %d \n",text, strcmp(text, "fifo"));
 		if (strcmp(text, "fifo") == 0)
 			return (1);
 	}
