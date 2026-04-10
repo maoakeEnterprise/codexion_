@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mteriier <mteriier@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,44 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "codexion.h"
+# include "codexion.h"
 
-int main(int argc, char **argv)
-{
-	if (argc == 9 && parsing(argc, argv))
-	{
-	}
-	else
-		message_error("ERROR ON THE PARSING\n");
-	return (0);
-}
-
-int parsing(int argc, char **argv)
+int text_is_digit(char *text)
 {
 	int	i;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (text[i])
 	{
-		if (i != 8)
-		{
-			if (!text_is_digit(argv[i]))
-				return (0);
-		}
-		else
-		{
-			if (!text_scheduler(argv[i]))
-				return (0);
-		}
+		if (text[i] < '0' || text[i] > '9')
+			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void message_error(char *message)
+int text_scheduler(char *text)
 {
 	int	len;
 
-	len = strlen(message);
-	write(2, message, len);
+	len = strlen(text);
+	if (len == 4)
+	{
+		if (strcmp(text, "fifo"))
+			return (1);
+	}
+	else if (len == 3)
+	{
+		if (strcmp(text, "edf"))
+			return (1);
+	}
+	return (0);
 }

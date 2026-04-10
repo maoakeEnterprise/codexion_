@@ -13,22 +13,10 @@
 #ifndef CODEXION_H
 # define CODEXION_H
 
-typedef struct s_data
-{
-	int			number_of_compiles_required
-	s_coder		*coders;
-	s_dongle	*dongles;
-}	t_data;
-
-typedef struct s_coder
-{
-	s_time	*timers;
-}	t_coder;
-
-typedef struct s_dongle
-{
-	float	dongle_cooldown;
-}	t_dongle;
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 typedef struct s_time
 {
@@ -36,5 +24,27 @@ typedef struct s_time
 	float	time_to_debug;
 	float	time_to_refactor; 
 }	t_time;
+
+typedef struct s_coder
+{
+	t_time	*timers;
+}	t_coder;
+
+typedef struct s_dongle
+{
+	float	dongle_cooldown;
+}	t_dongle;
+
+typedef struct s_data
+{
+	int			number_of_compiles_required;
+	t_coder		*coders;
+	t_dongle	*dongles;
+}	t_data;
+
+int	text_is_digit(char *text);
+int text_scheduler(char *text);
+int parsing(int argc, char **argv);
+void message_error(char *message);
 
 #endif

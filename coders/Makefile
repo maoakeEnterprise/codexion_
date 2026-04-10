@@ -2,11 +2,11 @@
 # ALL FILES 
 #============================
 
-SRC = main.c
+SRC = main.c parsing.c
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -pthread
 
 NAME = codexion
 
