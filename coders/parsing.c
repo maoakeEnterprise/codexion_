@@ -33,12 +33,13 @@ int text_scheduler(char *text)
 	len = strlen(text);
 	if (len == 4)
 	{
-		if (strcmp(text, "fifo"))
+		printf("%s %d \n",text, strcmp(text, "fifo"));
+		if (strcmp(text, "fifo") == 0)
 			return (1);
 	}
 	else if (len == 3)
 	{
-		if (strcmp(text, "edf"))
+		if (strcmp(text, "edf") == 0)
 			return (1);
 	}
 	return (0);

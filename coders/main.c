@@ -32,12 +32,18 @@ int parsing(int argc, char **argv)
 		if (i != 8)
 		{
 			if (!text_is_digit(argv[i]))
+			{
+				printf("TEST1\n");
 				return (0);
+			}
 		}
 		else
 		{
 			if (!text_scheduler(argv[i]))
+			{
+				printf("%s\n", argv[i]);
 				return (0);
+			}
 		}
 		i++;
 	}
