@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 14:57:10 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:03:52 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ typedef struct s_coder
 	t_data		*data;
 }	t_coder;
 
-int	text_is_digit(char *text);
-int text_scheduler(char *text);
-int parsing(int argc, char **argv);
-int	is_edf(char *text);
-void message_error(char *message);
-
+int			text_is_digit(char *text);
+int			text_scheduler(char *text);
+int			parsing(int argc, char **argv);
+int			is_edf(char *text);
+void		message_error(char *message);
+t_dongle	*init_dongle(int id);
+t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right);
+t_data		*init_data(char **argv);
 
 #endif

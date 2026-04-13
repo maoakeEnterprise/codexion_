@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 15:01:20 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:05:04 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 t_dongle	*init_dongle(int id)
 {
-	t_dongle *dongle;
+	t_dongle	*dongle;
+
 	dongle = malloc(sizeof(t_dongle));
 	if (!dongle)
 		return (NULL);
@@ -27,7 +28,8 @@ t_dongle	*init_dongle(int id)
 t_coder	*init_coder(t_data *data, t_dongle *left,
 	t_dongle *right)
 {
-	t_coder *coder;
+	t_coder	*coder;
+
 	coder = malloc(sizeof(t_coder));
 	if (!coder)
 		return (NULL);
@@ -42,7 +44,8 @@ t_coder	*init_coder(t_data *data, t_dongle *left,
 
 t_data	*init_data(char **argv)
 {
-	t_data *data;
+	t_data	*data;
+
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
