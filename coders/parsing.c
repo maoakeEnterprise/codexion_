@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 14:40:32 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:56:40 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ int	text_scheduler(char *text)
 		if (strcmp(text, "edf") == 0)
 			return (1);
 	}
+	return (0);
+}
+
+int	is_edf(char *text)
+{
+	if (strcmp(text, "edf") == 0)
+		return (1);
 	return (0);
 }
 

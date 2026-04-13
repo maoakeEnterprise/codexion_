@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   codexion.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mteriier <mteriier@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/06 16:04:14 by mteriier         ###   ########lyon.fr   */
+/*   Updated: 2026/04/13 14:57:10 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_coder
 int	text_is_digit(char *text);
 int text_scheduler(char *text);
 int parsing(int argc, char **argv);
+int	is_edf(char *text);
 void message_error(char *message);
+
 
 #endif

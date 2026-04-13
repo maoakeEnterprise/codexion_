@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 14:39:43 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:01:08 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 int	main(int argc, char **argv)
 {
-	t_coder		*coders;
-	t_dongle	*dongles;
-	t_data		data;
-
 	if (argc == 9 && parsing(argc, argv))
 	{
 	}
