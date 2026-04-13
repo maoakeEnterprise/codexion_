@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 14:39:43 by mteriier         ###   ########.fr       */
+/*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
+/*   Updated: 2026/04/13 14:38:47 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int	main(int argc, char **argv)
+void	init_dongle(t_dongle *dongle, int id)
 {
-	t_coder		*coders;
-	t_dongle	*dongles;
-	t_data		data;
-
-	if (argc == 9 && parsing(argc, argv))
-	{
-	}
-	else
-		message_error("ERROR ON THE PARSING\n");
-	return (0);
+	dongle->id = id;
+	pthread_mutex_init(&dongle->mutex, NULL);
+	dongle->available_at = 0;
 }
 
-void	message_error(char *message)
+void	init_coder(t_coder *coder, t_data *data, t_dongle *left,
+	t_dongle *right)
 {
-	int	len;
-
-	len = strlen(message);
-	write(2, message, len);
+	coder->compile_count = 0;
+	coder->last_compile_start = 0;
+	coder->data = data;
+	coder->left_dongle = left;
+	coder->right_dongle = right;
+	coder->thread_id = 0;
 }

@@ -6,13 +6,13 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 13:17:31 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:40:32 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "codexion.h"
+#include "codexion.h"
 
-int text_is_digit(char *text)
+int	text_is_digit(char *text)
 {
 	int	i;
 	int	res;
@@ -56,7 +56,7 @@ static int	overflow(const char *nptr)
 	return (1);
 }
 
-int text_scheduler(char *text)
+int	text_scheduler(char *text)
 {
 	int	len;
 
@@ -74,7 +74,7 @@ int text_scheduler(char *text)
 	return (0);
 }
 
-int parsing(int argc, char **argv)
+int	parsing(int argc, char **argv)
 {
 	int	i;
 
