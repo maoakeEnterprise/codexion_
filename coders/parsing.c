@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 14:56:40 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:30:26 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	text_is_digit(char *text)
 		i++;
 	}
 	res = atoi(text);
-	if (res > 0)
+	if (res < 1)
 		return (0);
 	return (1);
 }
@@ -88,7 +88,7 @@ int	parsing(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (argv[i] == NULL)
+		if (!argv[i])
 			return (0);
 		if (i != 8)
 		{
