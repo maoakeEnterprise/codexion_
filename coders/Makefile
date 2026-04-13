@@ -34,6 +34,7 @@ $(NAME): $(OBJ)
 
 test: $(OBJ_TEST)
 	$(CC) $(CFLAGS) $(OBJ_TEST) -o $(NAME_TEST1)
+	./$(NAME_TEST1)
 
 clean:
 	rm -rf $(OBJ) $(DEP) $(OBJ_TEST) $(DEP_TEST)
