@@ -17,30 +17,44 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-
-typedef struct s_time
-{
-	float	time_to_compile;
-	float	time_to_debug;
-	float	time_to_refactor; 
-}	t_time;
-
-typedef struct s_coder
-{
-	t_time	*timers;
-}	t_coder;
-
-typedef struct s_dongle
-{
-	float	dongle_cooldown;
-}	t_dongle;
+# include <pthread.h>
 
 typedef struct s_data
 {
-	int			number_of_compiles_required;
-	t_coder		*coders;
-	t_dongle	*dongles;
+	int				nb_coders;
+	long			time_burnout;
+	long			time_compile;
+	long			time_debug;
+	long			time_refactor;
+	int				nb_compile_required;
+	long			dongle_cooldown;
+	int				is_edf;
+
+	long			start_time;
+	int				simul_end;
+	pthread_mutex_t	write_mutex;
+	pthread_mutex_t	data_mutex;
 }	t_data;
+
+typedef struct s_dongle
+{
+	int				id;
+	pthread_mutex_t	mutex;
+	int				available_at;
+}	t_dongle;
+
+typedef struct s_coder
+{
+	int			id;
+	pthread_t	thread_id;
+	int			compile_count;
+	long		last_compile_start;
+
+	t_dongle	*left_dongle;
+	t_dongle	*right_dongle;
+
+	t_data		*data;
+}	t_coder;
 
 int	text_is_digit(char *text);
 int text_scheduler(char *text);
