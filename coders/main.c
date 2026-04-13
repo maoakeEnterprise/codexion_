@@ -22,28 +22,6 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-int parsing(int argc, char **argv)
-{
-	int	i;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (i != 8)
-		{
-			if (!text_is_digit(argv[i]))
-				return (0);
-		}
-		else
-		{
-			if (!text_scheduler(argv[i]))
-				return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
 void message_error(char *message)
 {
 	int	len;

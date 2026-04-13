@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mteriier <mteriier@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/06 16:02:18 by mteriier         ###   ########lyon.fr   */
+/*   Updated: 2026/04/13 13:17:31 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,32 @@ int text_is_digit(char *text)
 	return (1);
 }
 
+static int	overflow(const char *nptr)
+{
+	size_t	i;
+	int		tmp;
+	int		before;
+
+	i = 0;
+	tmp = 0;
+	before = 0;
+	if (strncmp(nptr, "-2147483648", 15))
+		return (1);
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+		i++;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		before = tmp;
+		tmp = tmp * 10 + nptr[i] - '0';
+		if (before > tmp)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int text_scheduler(char *text)
 {
 	int	len;
@@ -46,4 +72,30 @@ int text_scheduler(char *text)
 			return (1);
 	}
 	return (0);
+}
+
+int parsing(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (argv[i] == NULL)
+			return (0);
+		if (i != 8)
+		{
+			if (!text_is_digit(argv[i]))
+				return (0);
+			if (!overflow(argv[i]))
+				return (0);
+		}
+		else
+		{
+			if (!text_scheduler(argv[i]))
+				return (0);
+		}
+		i++;
+	}
+	return (1);
 }
