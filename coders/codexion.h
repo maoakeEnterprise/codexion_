@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 15:03:52 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:08:50 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void		message_error(char *message);
 t_dongle	*init_dongle(int id);
 t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right);
 t_data		*init_data(char **argv);
+long		ft_atol(const char *nptr);
 
 #endif

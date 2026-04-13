@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 15:05:04 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:09:27 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ t_data	*init_data(char **argv)
 	if (!data)
 		return (NULL);
 	data->nb_coders = atoi(argv[1]);
-	data->time_burnout = atol(argv[2]);
-	data->time_compile = atol(argv[3]);
-	data->time_debug = atol(argv[4]);
-	data->time_refactor = atol(argv[5]);
+	data->time_burnout = ft_atol(argv[2]);
+	data->time_compile = ft_atol(argv[3]);
+	data->time_debug = ft_atol(argv[4]);
+	data->time_refactor = ft_atol(argv[5]);
 	data->nb_compile_required = atoi(argv[6]);
-	data->dongle_cooldown = atol(argv[7]);
+	data->dongle_cooldown = ft_atol(argv[7]);
 	data->is_edf = is_edf(argv[8]);
 	data->simul_end = 0;
 	pthread_mutex_init(&data->write_mutex, NULL);
