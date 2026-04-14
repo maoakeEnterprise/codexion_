@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 11:31:04 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:10:56 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,17 @@ t_dongle	**init_dongles(int nb_dongles)
 
 	i = 0;
 	dongles = malloc((nb_dongles + 1) * sizeof(t_dongle *));
+	my_calloc((void **)dongles, nb_dongles);
 	if (!dongles)
 		return (NULL);
 	while (i < nb_dongles)
 	{
 		dongles[i] = init_dongle(i);
 		if(!dongles[i])
+		{
+			free_dongles(dongles);
 			return (NULL);
+		}
 		i++;
 	}
 	dongles[i] = NULL;
@@ -71,6 +75,7 @@ t_coder	**init_coders(t_data *data, t_dongle **dongles, int nb_coders)
 
 	i = 0;
 	coders = malloc((nb_coders + 1) * sizeof(t_coder *));
+	my_calloc((void **)coders, nb_coders);
 	if (!coders)
 		return (NULL);
 	while (i < nb_coders)
@@ -79,7 +84,10 @@ t_coder	**init_coders(t_data *data, t_dongle **dongles, int nb_coders)
 		right =dongle_right(dongles, i);
 		coders[i] = init_coder(data, left, right);
 		if (!coders[i])
+		{
+			free_coders(coders);
 			return (NULL);
+		}
 		i++;
 	}
 	coders[i] = NULL;

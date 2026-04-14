@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 15:06:42 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 11:32:16 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:05:17 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,16 @@ t_dongle	*dongle_right(t_dongle **dongles, int id_coder)
 	if (id_coder == (len_dongles - 1))
 		return (dongles[0]);
 	return (dongles[id_coder + 1]);
+}
+
+void	my_calloc(void ** tab, int len)
+{
+	int	i;
+	
+	i = 0;
+	while (i < len)
+	{
+		tab[i] = NULL;
+		i++;
+	}
 }
