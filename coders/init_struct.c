@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 13:15:21 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 15:25:14 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ t_dongle	**init_dongles(int nb_dongles)
 
 	i = 0;
 	dongles = malloc((nb_dongles + 1) * sizeof(t_dongle *));
-	my_calloc((void **)dongles, nb_dongles);
 	if (!dongles)
 		return (NULL);
+	my_calloc((void **)dongles, nb_dongles);
 	while (i < nb_dongles)
 	{
 		dongles[i] = init_dongle(i);
@@ -75,9 +75,9 @@ t_coder	**init_coders(t_data *data, t_dongle **dongles, int nb_coders)
 
 	i = 0;
 	coders = malloc((nb_coders + 1) * sizeof(t_coder *));
-	my_calloc((void **)coders, nb_coders);
 	if (!coders)
 		return (NULL);
+	my_calloc((void **)coders, nb_coders);
 	while (i < nb_coders)
 	{
 		left = dongle_left(dongles, i);
