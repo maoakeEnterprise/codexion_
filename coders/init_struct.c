@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 10:16:16 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 11:31:04 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ t_dongle	**init_dongles(int nb_dongles)
 	while (i < nb_dongles)
 	{
 		dongles[i] = init_dongle(i);
+		if(!dongles[i])
+			return (NULL);
 		i++;
 	}
 	dongles[i] = NULL;
-	return dongles;
+	return (dongles);
 }
 
 t_coder	*init_coder(t_data *data, t_dongle *left,
@@ -58,6 +60,30 @@ t_coder	*init_coder(t_data *data, t_dongle *left,
 	coder->right_dongle = right;
 	coder->thread_id = 0;
 	return (coder);
+}
+
+t_coder	**init_coders(t_data *data, t_dongle **dongles, int nb_coders)
+{
+	int			i;
+	t_coder		**coders;
+	t_dongle	*left;
+	t_dongle	*right;
+
+	i = 0;
+	coders = malloc((nb_coders + 1) * sizeof(t_coder *));
+	if (!coders)
+		return (NULL);
+	while (i < nb_coders)
+	{
+		left = dongle_left(dongles, i);
+		right =dongle_right(dongles, i);
+		coders[i] = init_coder(data, left, right);
+		if (!coders[i])
+			return (NULL);
+		i++;
+	}
+	coders[i] = NULL;
+	return (coders);
 }
 
 t_data	*init_data(char **argv)

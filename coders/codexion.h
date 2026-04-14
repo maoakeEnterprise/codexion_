@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 10:56:16 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 11:31:51 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,23 @@ typedef struct s_coder
 	t_data		*data;
 }	t_coder;
 
+// FUNCTIONS PARSING
 int			text_is_digit(char *text);
 int			text_scheduler(char *text);
 int			parsing(int argc, char **argv);
 int			is_edf(char *text);
 void		message_error(char *message);
+// FUNCTIONS INIT STRUCT
 t_dongle	*init_dongle(int id);
 t_dongle	**init_dongles(int nb_dongles);
 t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right);
 t_data		*init_data(char **argv);
+//	FUNCTIONS UTILS
 long		ft_atol(const char *nptr);
+int			get_len_dongles(t_dongle **dongles);
+t_dongle	*dongle_left(t_dongle **dongles, int id_coder);
+t_dongle	*dongle_right(t_dongle **dongles, int id_coder);
+// FUNCTIONS FREE
 void		free_data(t_data *data);
 void		free_dongle(t_dongle *dongle);
 void		free_dongles(t_dongle **dongles);
