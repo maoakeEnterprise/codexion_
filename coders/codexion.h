@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 14:17:06 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:46:39 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,11 @@ void		free_dongle(t_dongle *dongle);
 void		free_dongles(t_dongle **dongles);
 void		free_coders(t_coder **coders);
 void		free_all(t_data *data, t_dongle **dongles, t_coder **coders);
-//MAIN
+// MAIN
 int			launch_program(char **argv);
 void		message_error(char *message);
+// CRASH MALLOC
+int			crash_dongle(t_data *data);
+int 		crash_coders(t_data *data, t_dongle ** dongles);
 
 #endif

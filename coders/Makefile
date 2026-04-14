@@ -2,7 +2,7 @@
 # ALL FILES 
 #============================
 
-SRC = main.c parsing.c init_struct.c utils.c free.c
+SRC = main.c parsing.c init_struct.c utils.c free.c free_crash.c
 
 TEST = test_parsing.c parsing.c
 

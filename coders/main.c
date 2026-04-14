@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 14:17:37 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:47:49 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,10 @@ int	launch_program(char **argv)
 			return (0);
 		dongles = init_dongles(data->nb_coders);
 		if (!dongles)
-		{
-			free_data(data);
-			return (0);
-		}
+			return(crash_dongle(data));
 		coders = init_coders(data, dongles, data->nb_coders);
 		if (!coders)
-		{
-			free_dongles(dongles);
-			free_data(data);
-			return (0);
-		}
+			return (crash_coders(data, dongles));
 		free_all(data, dongles, coders);
 		return (1);
 }
