@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 15:09:27 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 10:10:27 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ t_dongle	*init_dongle(int id)
 	pthread_mutex_init(&dongle->mutex, NULL);
 	dongle->available_at = 0;
 	return (dongle);
+}
+
+t_dongle	**init_dongles(int nb_dongles)
+{
+	int			i;
+	t_dongle	**dongles;
+
+	i = 0;
+	dongles = malloc((nb_dongles + 1) * sizeof(t_dongle))
+	while (i < nb_dongles)
+	{
+		dongles[i] = init_dongle(i);
+		i++;
+	}
+	dongles[i] = NULL;
+	return dongles;
 }
 
 t_coder	*init_coder(t_data *data, t_dongle *left,
