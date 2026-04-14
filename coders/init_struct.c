@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 10:10:27 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 10:16:16 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ t_dongle	**init_dongles(int nb_dongles)
 	t_dongle	**dongles;
 
 	i = 0;
-	dongles = malloc((nb_dongles + 1) * sizeof(t_dongle))
+	dongles = malloc((nb_dongles + 1) * sizeof(t_dongle *));
+	if (!dongles)
+		return (NULL);
 	while (i < nb_dongles)
 	{
 		dongles[i] = init_dongle(i);

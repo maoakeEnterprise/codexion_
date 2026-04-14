@@ -6,7 +6,7 @@ SRC = main.c parsing.c init_struct.c utils.c free.c
 
 TEST = test_parsing.c parsing.c
 
-TEST_INIT = test_init.c parsing.c init_struct.c utils.c
+TEST_INIT = test_init.c parsing.c init_struct.c utils.c free.c
 
 CC = cc
 
@@ -30,7 +30,7 @@ DEP_TEST = $(OBJ_TEST:.o=.d)
 
 DEP_TEST_INIT = $(OBJ_TEST_INIT:.o=.d)
 
-.PHONY: all clean fclean re test test_init
+.PHONY: all clean fclean re test test_init test_dongles
 
 all: $(NAME)
 
@@ -47,6 +47,9 @@ test: $(OBJ_TEST)
 test_init: $(OBJ_TEST_INIT)
 	$(CC) $(CFLAGS) $(OBJ_TEST_INIT) -o $(NAME_TEST2)
 	./$(NAME_TEST2)
+
+test_dongles: test_init
+	@echo "Tests for every functions init_struct.c"
 
 clean:
 	rm -rf $(OBJ) $(DEP) $(OBJ_TEST) $(DEP_TEST) $(OBJ_TEST_INIT) $(DEP_TEST_INIT)

@@ -8,9 +8,13 @@
 // Prototypes
 long ft_atol(const char *nptr);
 t_dongle *init_dongle(int id);
+t_dongle **init_dongles(int nb_dongles);
 t_coder *init_coder(t_data *data, t_dongle *left, t_dongle *right);
 t_data *init_data(char **argv);
 int is_edf(char *str); // Assuming it's defined somewhere
+void free_data(t_data *data);
+void free_dongle(t_dongle *dongle);
+void free_dongles(t_dongle **dongles);
 
 // Test ft_atol
 void test_ft_atol() {
@@ -73,8 +77,7 @@ void test_init_dongle() {
     printf("  Created dongle with id %d\n", d->id);
 
     // Free
-    pthread_mutex_destroy(&d->mutex);
-    free(d);
+    free_dongle(d);
     printf("  Freed dongle\n");
 
     printf("init_dongle tests passed.\n\n");
@@ -99,9 +102,7 @@ void test_init_data() {
     printf("  Created data with nb_coders %d\n", data->nb_coders);
 
     // Free
-    pthread_mutex_destroy(&data->write_mutex);
-    pthread_mutex_destroy(&data->data_mutex);
-    free(data);
+    free_data(data);
     printf("  Freed data\n");
 
     printf("init_data tests passed.\n\n");
@@ -130,16 +131,73 @@ void test_init_coder() {
     printf("  Freed coder\n");
 
     // Free data and dongles
-    pthread_mutex_destroy(&data->write_mutex);
-    pthread_mutex_destroy(&data->data_mutex);
-    free(data);
-    pthread_mutex_destroy(&left->mutex);
-    free(left);
-    pthread_mutex_destroy(&right->mutex);
-    free(right);
+    free_dongle(left);
+    free_dongle(right);
+    free_data(data);
     printf("  Freed all\n");
 
     printf("init_coder tests passed.\n\n");
+}
+
+// Test init_dongles
+void test_init_dongles() {
+    printf("Testing init_dongles:\n");
+
+    // Test 1: Create with 0 dongles
+    printf("  Test 1: Creating with 0 dongles\n");
+    t_dongle **dongles_0 = init_dongles(0);
+    assert(dongles_0 != NULL);
+    assert(dongles_0[0] == NULL);
+    printf("    ✓ Array created correctly with null terminator\n");
+    free_dongles(dongles_0);
+
+    // Test 2: Create with 1 dongle
+    printf("  Test 2: Creating with 1 dongle\n");
+    t_dongle **dongles_1 = init_dongles(1);
+    assert(dongles_1 != NULL);
+    assert(dongles_1[0] != NULL);
+    assert(dongles_1[0]->id == 0);
+    assert(dongles_1[0]->available_at == 0);
+    assert(dongles_1[1] == NULL);
+    printf("    ✓ Single dongle created with correct id and null terminator\n");
+    free_dongles(dongles_1);
+
+    // Test 3: Create with 5 dongles
+    printf("  Test 3: Creating with 5 dongles\n");
+    t_dongle **dongles_5 = init_dongles(5);
+    assert(dongles_5 != NULL);
+    for (int i = 0; i < 5; i++) {
+        assert(dongles_5[i] != NULL);
+        assert(dongles_5[i]->id == i);
+        assert(dongles_5[i]->available_at == 0);
+    }
+    assert(dongles_5[5] == NULL);
+    printf("    ✓ 5 dongles created with correct ids and null terminator\n");
+    free_dongles(dongles_5);
+
+    // Test 4: Create with 100 dongles
+    printf("  Test 4: Creating with 100 dongles\n");
+    t_dongle **dongles_100 = init_dongles(100);
+    assert(dongles_100 != NULL);
+    for (int i = 0; i < 100; i++) {
+        assert(dongles_100[i] != NULL);
+        assert(dongles_100[i]->id == i);
+    }
+    assert(dongles_100[100] == NULL);
+    printf("    ✓ 100 dongles created correctly\n");
+    free_dongles(dongles_100);
+
+    // Test 5: Verify mutex is initialized for each dongle
+    printf("  Test 5: Verifying mutex initialization\n");
+    t_dongle **dongles_test = init_dongles(3);
+    for (int i = 0; i < 3; i++) {
+        pthread_mutex_lock(&dongles_test[i]->mutex);
+        pthread_mutex_unlock(&dongles_test[i]->mutex);
+    }
+    printf("    ✓ All mutexes are properly initialized\n");
+    free_dongles(dongles_test);
+
+    printf("init_dongles tests passed.\n\n");
 }
 
 int main() {
@@ -147,6 +205,7 @@ int main() {
     test_init_dongle();
     test_init_data();
     test_init_coder();
+    test_init_dongles();
 
     printf("All unit tests passed!\n");
     return 0;

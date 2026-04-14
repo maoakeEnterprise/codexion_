@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 15:21:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 15:21:52 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 10:57:42 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,48 @@
 
 void	free_data(t_data *data)
 {
-    pthread_mutex_destroy(&data->write_mutex);
-    pthread_mutex_destroy(&data->data_mutex);
-    free(data);
+	pthread_mutex_destroy(&data->write_mutex);
+	pthread_mutex_destroy(&data->data_mutex);
+	free(data);
 }
 
 void	free_dongle(t_dongle *dongle)
 {
-    pthread_mutex_destroy(&dongle->mutex);
-    free(dongle);
+	pthread_mutex_destroy(&dongle->mutex);
+	free(dongle);
 }
 
-void	free_coder(t_coder *coder)
+void	free_dongles(t_dongle **dongles)
 {
-    free(coder);
+	int	i;
+
+	i = 0;
+	while (dongles[i])
+	{
+		free_dongle(dongles[i]);
+		i++;
+	}
+	free(dongles);
+}
+
+void	free_coders(t_coder **coders)
+{
+	int	i;
+
+	i = 0;
+	while (coders[i])
+	{
+		free(coders[i]);
+		i++;
+	}
+	free(coders);
 }
 
 void	free_all(t_data *data, t_dongle **dongles, t_coder **coders)
 {
-    for (int i = 0; i < data->nb_coders; i++)
-    {
-        free_coder(coders[i]);
-        free_dongle(dongles[i]);
-    }
-    free(coders);
-    free(dongles);
-    free_data(data);
+	free_coders(coders);
+	free_dongles(dongles);
+	free(coders);
+	free(dongles);
+	free_data(data);
 }
