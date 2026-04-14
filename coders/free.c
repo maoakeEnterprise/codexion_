@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 15:21:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 10:57:42 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:14:58 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,5 @@ void	free_all(t_data *data, t_dongle **dongles, t_coder **coders)
 {
 	free_coders(coders);
 	free_dongles(dongles);
-	free(coders);
-	free(dongles);
 	free_data(data);
 }
