@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 15:25:27 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:15:49 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_data	*data;
+
 	printf("Starting program with argc = %d\n", argc);
 	if (argc == 9 && parsing(argc, argv))
 	{

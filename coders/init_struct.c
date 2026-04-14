@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 13:10:56 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:15:21 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_dongle	**init_dongles(int nb_dongles)
 	while (i < nb_dongles)
 	{
 		dongles[i] = init_dongle(i);
-		if(!dongles[i])
+		if (!dongles[i])
 		{
 			free_dongles(dongles);
 			return (NULL);
@@ -81,7 +81,7 @@ t_coder	**init_coders(t_data *data, t_dongle **dongles, int nb_coders)
 	while (i < nb_coders)
 	{
 		left = dongle_left(dongles, i);
-		right =dongle_right(dongles, i);
+		right = dongle_right(dongles, i);
 		coders[i] = init_coder(data, left, right);
 		if (!coders[i])
 		{
