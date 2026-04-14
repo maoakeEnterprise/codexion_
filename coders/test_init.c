@@ -5,17 +5,6 @@
 #include <assert.h>
 #include <limits.h>
 
-// Prototypes
-long ft_atol(const char *nptr);
-t_dongle *init_dongle(int id);
-t_dongle **init_dongles(int nb_dongles);
-t_coder *init_coder(t_data *data, t_dongle *left, t_dongle *right);
-t_data *init_data(char **argv);
-int is_edf(char *str); // Assuming it's defined somewhere
-void free_data(t_data *data);
-void free_dongle(t_dongle *dongle);
-void free_dongles(t_dongle **dongles);
-
 // Test ft_atol
 void test_ft_atol() {
     printf("Testing ft_atol:\n");
@@ -200,12 +189,110 @@ void test_init_dongles() {
     printf("init_dongles tests passed.\n\n");
 }
 
+// Test init_coders
+void test_init_coders() {
+    printf("Testing init_coders:\n");
+
+    // Create test data and dongles
+    char *argv[] = {"program", "4", "1000", "2000", "3000", "4000", "5", "6000", "fifo"};
+    t_data *data = init_data(argv);
+    assert(data != NULL);
+
+    // Test 1: Create with 0 coders
+    printf("  Test 1: Creating with 0 coders\n");
+    t_dongle **dongles_0 = init_dongles(0);
+    t_coder **coders_0 = init_coders(data, dongles_0, 0);
+    assert(coders_0 != NULL);
+    assert(coders_0[0] == NULL);
+    printf("    ✓ Array created correctly with null terminator\n");
+    free_coders(coders_0);
+    free_dongles(dongles_0);
+
+    // Test 2: Create with 1 coder and 1 dongle
+    printf("  Test 2: Creating with 1 coder and 1 dongle\n");
+    t_dongle **dongles_1 = init_dongles(1);
+    t_coder **coders_1 = init_coders(data, dongles_1, 1);
+    assert(coders_1 != NULL);
+    assert(coders_1[0] != NULL);
+    assert(coders_1[0]->data == data);
+    assert(coders_1[0]->left_dongle == dongles_1[0]);  // Circular: left of 0 is 0
+    assert(coders_1[0]->right_dongle == dongles_1[0]); // Circular: right of 0 is 0
+    assert(coders_1[0]->compile_count == 0);
+    assert(coders_1[0]->last_compile_start == 0);
+    assert(coders_1[1] == NULL);
+    printf("    ✓ Single coder created with correct dongle assignments\n");
+    free_coders(coders_1);
+    free_dongles(dongles_1);
+
+    // Test 3: Create with 2 coders and 2 dongles
+    printf("  Test 3: Creating with 2 coders and 2 dongles\n");
+    t_dongle **dongles_2 = init_dongles(2);
+    t_coder **coders_2 = init_coders(data, dongles_2, 2);
+    assert(coders_2 != NULL);
+    // Coder 0: left = dongle[1], right = dongle[1]
+    assert(coders_2[0]->left_dongle == dongles_2[1]);
+    assert(coders_2[0]->right_dongle == dongles_2[1]);
+    // Coder 1: left = dongle[0], right = dongle[0]
+    assert(coders_2[1]->left_dongle == dongles_2[0]);
+    assert(coders_2[1]->right_dongle == dongles_2[0]);
+    assert(coders_2[2] == NULL);
+    printf("    ✓ 2 coders created with correct circular dongle assignments\n");
+    free_coders(coders_2);
+    free_dongles(dongles_2);
+
+    // Test 4: Create with 3 coders and 3 dongles
+    printf("  Test 4: Creating with 3 coders and 3 dongles\n");
+    t_dongle **dongles_3 = init_dongles(3);
+    t_coder **coders_3 = init_coders(data, dongles_3, 3);
+    assert(coders_3 != NULL);
+    // Coder 0: left = dongle[2], right = dongle[1]
+    assert(coders_3[0]->left_dongle == dongles_3[2]);
+    assert(coders_3[0]->right_dongle == dongles_3[1]);
+    // Coder 1: left = dongle[0], right = dongle[2]
+    assert(coders_3[1]->left_dongle == dongles_3[0]);
+    assert(coders_3[1]->right_dongle == dongles_3[2]);
+    // Coder 2: left = dongle[1], right = dongle[0]
+    assert(coders_3[2]->left_dongle == dongles_3[1]);
+    assert(coders_3[2]->right_dongle == dongles_3[0]);
+    assert(coders_3[3] == NULL);
+    printf("    ✓ 3 coders created with correct circular dongle assignments\n");
+    free_coders(coders_3);
+    free_dongles(dongles_3);
+
+    // Test 5: Create with 4 coders and 4 dongles (matching data->nb_coders)
+    printf("  Test 5: Creating with 4 coders and 4 dongles\n");
+    t_dongle **dongles_4 = init_dongles(4);
+    t_coder **coders_4 = init_coders(data, dongles_4, 4);
+    assert(coders_4 != NULL);
+    for (int i = 0; i < 4; i++) {
+        assert(coders_4[i] != NULL);
+        assert(coders_4[i]->data == data);
+        assert(coders_4[i]->compile_count == 0);
+        assert(coders_4[i]->last_compile_start == 0);
+        // Verify circular assignment
+        int left_idx = (i == 0) ? 3 : i - 1;
+        int right_idx = (i == 3) ? 0 : i + 1;
+        assert(coders_4[i]->left_dongle == dongles_4[left_idx]);
+        assert(coders_4[i]->right_dongle == dongles_4[right_idx]);
+    }
+    assert(coders_4[4] == NULL);
+    printf("    ✓ 4 coders created with correct circular dongle assignments\n");
+    free_coders(coders_4);
+    free_dongles(dongles_4);
+
+    // Free test data
+    free_data(data);
+
+    printf("init_coders tests passed.\n\n");
+}
+
 int main() {
     test_ft_atol();
     test_init_dongle();
     test_init_data();
     test_init_coder();
     test_init_dongles();
+    test_init_coders();
 
     printf("All unit tests passed!\n");
     return 0;

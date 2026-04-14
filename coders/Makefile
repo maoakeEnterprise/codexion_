@@ -30,7 +30,7 @@ DEP_TEST = $(OBJ_TEST:.o=.d)
 
 DEP_TEST_INIT = $(OBJ_TEST_INIT:.o=.d)
 
-.PHONY: all clean fclean re test test_init test_dongles
+.PHONY: all clean fclean re test test_init
 
 all: $(NAME)
 
@@ -47,9 +47,6 @@ test: $(OBJ_TEST)
 test_init: $(OBJ_TEST_INIT)
 	$(CC) $(CFLAGS) $(OBJ_TEST_INIT) -o $(NAME_TEST2)
 	./$(NAME_TEST2)
-
-test_dongles: test_init
-	@echo "Tests for every functions init_struct.c"
 
 clean:
 	rm -rf $(OBJ) $(DEP) $(OBJ_TEST) $(DEP_TEST) $(OBJ_TEST_INIT) $(DEP_TEST_INIT)

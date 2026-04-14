@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 11:31:51 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/14 12:00:23 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_dongle	*init_dongle(int id);
 t_dongle	**init_dongles(int nb_dongles);
 t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right);
 t_data		*init_data(char **argv);
+t_coder		**init_coders(t_data *data, t_dongle **dongles, int nb_coders);
 //	FUNCTIONS UTILS
 long		ft_atol(const char *nptr);
 int			get_len_dongles(t_dongle **dongles);
