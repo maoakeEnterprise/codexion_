@@ -50,13 +50,14 @@ t_dongle	**init_dongles(int nb_dongles)
 }
 
 t_coder	*init_coder(t_data *data, t_dongle *left,
-	t_dongle *right)
+	t_dongle *right, int id)
 {
 	t_coder	*coder;
 
 	coder = malloc(sizeof(t_coder));
 	if (!coder)
 		return (NULL);
+	coder->id = id;
 	coder->compile_count = 0;
 	coder->last_compile_start = 0;
 	coder->data = data;
@@ -82,7 +83,7 @@ t_coder	**init_coders(t_data *data, t_dongle **dongles, int nb_coders)
 	{
 		left = dongle_left(dongles, i);
 		right = dongle_right(dongles, i);
-		coders[i] = init_coder(data, left, right);
+		coders[i] = init_coder(data, left, right, i);
 		if (!coders[i])
 		{
 			free_coders(coders);

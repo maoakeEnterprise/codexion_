@@ -65,7 +65,7 @@ int			is_edf(char *text);
 // FUNCTIONS INIT STRUCT
 t_dongle	*init_dongle(int id);
 t_dongle	**init_dongles(int nb_dongles);
-t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right);
+t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right, int id);
 t_data		*init_data(char **argv, long start);
 t_coder		**init_coders(t_data *data, t_dongle **dongles, int nb_coders);
 //	FUNCTIONS UTILS

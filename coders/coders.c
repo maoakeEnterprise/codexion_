@@ -23,9 +23,9 @@ void	lock_dongles(t_coder *coder)
 void	unlock_dongles(t_coder *coder)
 {
 	pthread_mutex_unlock(&(coder->left_dongle->mutex));
-	printf("%d has taken a dongle\n", coder->id);
+	printf("%d has untaken a dongle\n", coder->id);
 	pthread_mutex_unlock(&(coder->right_dongle->mutex));
-	printf("%d has taken a dongle\n", coder->id);
+	printf("%d has untaken a dongle\n", coder->id);
 }
 
 void	*working_coder(void *arg)

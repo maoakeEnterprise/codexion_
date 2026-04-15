@@ -31,7 +31,7 @@ DEP_TEST = $(OBJ_TEST:.o=.d)
 
 DEP_TEST_INIT = $(OBJ_TEST_INIT:.o=.d)
 
-.PHONY: all clean fclean re test test_init
+.PHONY: all clean fclean re test test_init test_codexion
 
 all: $(NAME)
 
@@ -44,6 +44,9 @@ $(NAME): $(OBJ)
 test: $(OBJ_TEST)
 	$(CC) $(CFLAGS) $(OBJ_TEST) -o $(NAME_TEST1)
 	./$(NAME_TEST1)
+
+test_codexion:
+	./$(NAME) 22 22 22 10 22 22 22 fifo
 
 test_init: $(OBJ_TEST_INIT)
 	$(CC) $(CFLAGS) $(OBJ_TEST_INIT) -o $(NAME_TEST2)
