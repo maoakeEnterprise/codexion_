@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 15:14:24 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/15 15:21:19 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void		lock_dongles(t_coder *coder);
 void		unlock_dongles(t_coder *coder);
 void		*working_coder(void *arg);
 int			calcul_compile(t_coder **coders);
+int			is_nb_compiled(t_coder **coders);
 
 #endif

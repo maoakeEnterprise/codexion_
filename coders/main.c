@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 15:14:03 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/15 15:21:39 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	launch_program(char **argv, long start)
 		coders = init_coders(data, dongles, data->nb_coders);
 		if (!coders)
 			return (crash_coders(data, dongles));
+		launch_coders(coders);
 		free_all(data, dongles, coders);
 		return (1);
 }
@@ -58,6 +59,8 @@ void	launch_coders(t_coder **coders)
 	{
 		pthread_create(&coders[i]->thread_id, NULL, working_coder,
 			&coders[i]);
+		if (is_nb_compiled(coders))
+			break;
 		i++;
 	}
 }
