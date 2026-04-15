@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 14:46:39 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/15 12:21:16 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,11 @@ void		message_error(char *message);
 // CRASH MALLOC
 int			crash_dongle(t_data *data);
 int 		crash_coders(t_data *data, t_dongle ** dongles);
+// FUNCTION CODERS
+void		compiling(t_coder *coder);
+void		debugging(t_coder *coder);
+void		refactoring(t_coder *coder);
+void		lock_dongles(t_coder *coder);
+void		*working_coder(void *arg);
 
 #endif
