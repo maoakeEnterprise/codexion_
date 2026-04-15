@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:19:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 15:09:30 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/15 17:52:44 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*working_coder(void *arg)
 	t_coder	*coder;
 
 	coder = (void *)arg;
-	while(!coder->data->simul_end)
+	while (!get_simul_end(coder->data))
 	{
 		lock_dongles(coder);
 		compiling(coder);
@@ -53,10 +53,10 @@ void	launch_coders(t_coder **coders)
 	{
 		pthread_create(&coders[i]->thread_id, NULL, working_coder,
 			coders[i]);
-		if (is_nb_compiled(coders))
-			break;
 		i++;
 	}
+	while (!is_nb_compiled(coders))
+		usleep(10000);
 }
 
 void	unlaunch_coders(t_coder **coders)

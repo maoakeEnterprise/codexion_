@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 15:21:19 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/15 17:53:12 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_dongle	*dongle_left(t_dongle **dongles, int id_coder);
 t_dongle	*dongle_right(t_dongle **dongles, int id_coder);
 void		my_calloc(void **tab, int len);
 long		calcul_time(t_data *data);
+int			get_simul_end(t_data *data);
 // FUNCTIONS FREE
 void		free_data(t_data *data);
 void		free_dongle(t_dongle *dongle);
