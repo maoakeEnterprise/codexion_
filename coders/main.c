@@ -47,23 +47,9 @@ int	launch_program(char **argv, long start)
 		if (!coders)
 			return (crash_coders(data, dongles));
 		launch_coders(coders);
+		unlaunch_coders(coders);
 		free_all(data, dongles, coders);
 		return (1);
-}
-
-void	launch_coders(t_coder **coders)
-{
-	int	i;
-
-	i = 0;
-	while (coders[i])
-	{
-		pthread_create(&coders[i]->thread_id, NULL, working_coder,
-			coders[i]);
-		if (is_nb_compiled(coders))
-			break;
-		i++;
-	}
 }
 
 void	message_error(char *message)

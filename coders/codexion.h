@@ -84,7 +84,6 @@ void		free_all(t_data *data, t_dongle **dongles, t_coder **coders);
 // MAIN
 int			launch_program(char **argv, long start);
 void		message_error(char *message);
-void		launch_coders(t_coder **coders);
 // CRASH MALLOC
 int			crash_dongle(t_data *data);
 int 		crash_coders(t_data *data, t_dongle ** dongles);
@@ -97,5 +96,7 @@ void		unlock_dongles(t_coder *coder);
 void		*working_coder(void *arg);
 int			calcul_compile(t_coder **coders);
 int			is_nb_compiled(t_coder **coders);
+void		launch_coders(t_coder **coders);
+void		unlaunch_coders(t_coder **coders);
 
 #endif

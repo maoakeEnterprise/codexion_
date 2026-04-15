@@ -43,3 +43,30 @@ void	*working_coder(void *arg)
 	}
 	return (NULL);
 }
+
+void	launch_coders(t_coder **coders)
+{
+	int	i;
+
+	i = 0;
+	while (coders[i])
+	{
+		pthread_create(&coders[i]->thread_id, NULL, working_coder,
+			coders[i]);
+		if (is_nb_compiled(coders))
+			break;
+		i++;
+	}
+}
+
+void	unlaunch_coders(t_coder **coders)
+{
+	int	i;
+
+	i = 0;
+	while (coders[i])
+	{
+		pthread_join(coders[i]->thread_id, NULL);
+		i++;
+	}
+}
