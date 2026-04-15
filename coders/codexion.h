@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 12:21:16 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/15 15:14:24 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 typedef struct s_data
 {
@@ -65,7 +66,7 @@ int			is_edf(char *text);
 t_dongle	*init_dongle(int id);
 t_dongle	**init_dongles(int nb_dongles);
 t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right);
-t_data		*init_data(char **argv);
+t_data		*init_data(char **argv, long start);
 t_coder		**init_coders(t_data *data, t_dongle **dongles, int nb_coders);
 //	FUNCTIONS UTILS
 long		ft_atol(const char *nptr);
@@ -73,6 +74,7 @@ int			get_len_dongles(t_dongle **dongles);
 t_dongle	*dongle_left(t_dongle **dongles, int id_coder);
 t_dongle	*dongle_right(t_dongle **dongles, int id_coder);
 void		my_calloc(void **tab, int len);
+long		calcul_time(t_data *data);
 // FUNCTIONS FREE
 void		free_data(t_data *data);
 void		free_dongle(t_dongle *dongle);
@@ -80,8 +82,9 @@ void		free_dongles(t_dongle **dongles);
 void		free_coders(t_coder **coders);
 void		free_all(t_data *data, t_dongle **dongles, t_coder **coders);
 // MAIN
-int			launch_program(char **argv);
+int			launch_program(char **argv, long start);
 void		message_error(char *message);
+void		launch_coders(t_coder **coders);
 // CRASH MALLOC
 int			crash_dongle(t_data *data);
 int 		crash_coders(t_data *data, t_dongle ** dongles);
@@ -90,6 +93,8 @@ void		compiling(t_coder *coder);
 void		debugging(t_coder *coder);
 void		refactoring(t_coder *coder);
 void		lock_dongles(t_coder *coder);
+void		unlock_dongles(t_coder *coder);
 void		*working_coder(void *arg);
+int			calcul_compile(t_coder **coders);
 
 #endif

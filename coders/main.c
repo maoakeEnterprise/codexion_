@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 14:47:49 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/15 15:14:03 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,29 @@
 
 int	main(int argc, char **argv)
 {
+	struct	timeval t;
+	long	start_time;
+
+	gettimeofday(&t, NULL);
 	printf("Starting program with argc = %d\n", argc);
+	start_time = t.tv_usec;
 	if (argc == 9 && parsing(argc, argv))
 	{
-		launch_program(argv);
+		launch_program(argv, start_time);
 	}
 	else
 		message_error("ERROR ON THE PARSING\n");
 	return (0);
 }
 
-int	launch_program(char **argv)
+int	launch_program(char **argv, long start)
 {
 	t_data		*data;
 	t_dongle	**dongles;
 	t_coder		**coders;
 
-		data = init_data(argv);
+		data = init_data(argv, start);
+		printf("Launching program -> %ld ms\n", calcul_time(data));
 		if (!data)
 			return (0);
 		dongles = init_dongles(data->nb_coders);
@@ -41,6 +47,19 @@ int	launch_program(char **argv)
 			return (crash_coders(data, dongles));
 		free_all(data, dongles, coders);
 		return (1);
+}
+
+void	launch_coders(t_coder **coders)
+{
+	int	i;
+
+	i = 0;
+	while (coders[i])
+	{
+		pthread_create(&coders[i]->thread_id, NULL, working_coder,
+			&coders[i]);
+		i++;
+	}
 }
 
 void	message_error(char *message)

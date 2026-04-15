@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 12:22:05 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 12:22:49 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/15 15:14:34 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,43 @@
 
 void	compiling(t_coder *coder)
 {
-	printf("%d is compiling\n", coder->id);
+	long	timer;
+
+	timer = calcul_time(coder->data);
+	printf("%ld %d is compiling\n", timer, coder->id);
 	usleep(coder->data->time_compile * 1000);
+	coder->compile_count++;
 }
 
 void	debugging(t_coder *coder)
 {
-	printf("%d is debugging\n", coder->id);
+	long	timer;
+
+	timer = calcul_time(coder->data);
+	printf("%ld %d is debugging\n", timer, coder->id);
 	usleep(coder->data->time_debug * 1000);	
 }
 
 void	refactoring(t_coder *coder)
 {
-	printf("%d is debugging\n", coder->id);
+	long	timer;
+
+	timer = calcul_time(coder->data);
+	printf("%ld %d is debugging\n", timer, coder->id);
 	usleep(coder->data->time_refactor * 1000);
+}
+
+int	calcul_compile(t_coder **coders)
+{
+	int	i;
+	int	compiled;
+
+	i = 0;
+	compiled = 0;
+	while (coders[i])
+	{
+		compiled += coders[i]->compile_count;
+		i++;
+	}
+	return (compiled);
 }
