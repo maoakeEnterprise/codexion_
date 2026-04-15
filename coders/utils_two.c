@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:20:42 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 18:03:30 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/15 18:15:17 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ int	get_simul_end(t_data *data)
 	end = data->simul_end;
 	pthread_mutex_unlock(&data->data_mutex);
 	return (end);
+}
+
+void	print_log(t_coder *coder, char *str)
+{
+	long	timer;
+
+	timer = calcul_time(coder->data);
+	pthread_mutex_lock(&coder->data->write_mutex);
+	printf("%ld %d %s", timer, coder->id, str);
+	pthread_mutex_unlock(&coder->data->write_mutex);
 }
