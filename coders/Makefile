@@ -31,7 +31,7 @@ DEP_TEST = $(OBJ_TEST:.o=.d)
 
 DEP_TEST_INIT = $(OBJ_TEST_INIT:.o=.d)
 
-.PHONY: all clean fclean re test test_init test_codexion
+.PHONY: all clean fclean re test test_init codex debug
 
 all: $(NAME)
 
@@ -45,7 +45,7 @@ test: $(OBJ_TEST)
 	$(CC) $(CFLAGS) $(OBJ_TEST) -o $(NAME_TEST1)
 	./$(NAME_TEST1)
 
-test_codexion:
+codex:
 	./$(NAME) 22 22 22 10 22 22 22 fifo
 
 test_init: $(OBJ_TEST_INIT)
@@ -54,6 +54,12 @@ test_init: $(OBJ_TEST_INIT)
 
 clean:
 	rm -rf $(OBJ) $(DEP) $(OBJ_TEST) $(DEP_TEST) $(OBJ_TEST_INIT) $(DEP_TEST_INIT)
+
+debug: fclean
+	$(MAKE) CFLAGS=" -Wall -Werror -Wextra -pthread -fsanitize=thread"
+
+valgrind:
+	valgrind --tool=helgrind ./$(NAME) 22 22 22 10 22 22 22 fifo
 
 fclean: clean
 	rm -f $(NAME) $(NAME_TEST1) $(NAME_TEST2)
