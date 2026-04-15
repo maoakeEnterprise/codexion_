@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	if (argc == 9 && parsing(argc, argv))
 	{
 		launch_program(argv, start_time);
+		printf("FINISH SIMULATION\n");
 	}
 	else
 		message_error("ERROR ON THE PARSING\n");
@@ -58,7 +59,7 @@ void	launch_coders(t_coder **coders)
 	while (coders[i])
 	{
 		pthread_create(&coders[i]->thread_id, NULL, working_coder,
-			&coders[i]);
+			coders[i]);
 		if (is_nb_compiled(coders))
 			break;
 		i++;

@@ -17,7 +17,7 @@ void	compiling(t_coder *coder)
 	long	timer;
 
 	timer = calcul_time(coder->data);
-	printf("%ld CACA %d is compiling\n", timer, coder->id);
+	printf("%ld %d is compiling\n", timer, coder->id);
 	usleep(coder->data->time_compile * 1000);
 	coder->compile_count++;
 }
