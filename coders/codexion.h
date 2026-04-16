@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 18:12:02 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 16:24:03 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		my_calloc(void **tab, int len);
 long		calcul_time(t_data *data);
 int			get_simul_end(t_data *data);
 void		print_log(t_coder *coder, char *str);
+void		update_simul_end(t_coder **coders);
 // FUNCTIONS FREE
 void		free_data(t_data *data);
 void		free_dongle(t_dongle *dongle);
@@ -100,5 +101,11 @@ int			calcul_compile(t_coder **coders);
 int			is_nb_compiled(t_coder **coders);
 void		launch_coders(t_coder **coders);
 void		unlaunch_coders(t_coder **coders);
+// FUNCTION MONITOR
+void		launch_monitor(t_coder **coders, pthread_t *thread);
+void		unlaunch_monitor(pthread_t thread);
+void		*monitor(void *arg);
+void		stop_on_burn(t_coder *coder, t_data *data);
+int			is_burned(t_coder *coder);
 
 #endif

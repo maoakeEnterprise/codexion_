@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 14:56:21 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 16:18:20 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	launch_program(char **argv, long start)
 	t_data		*data;
 	t_dongle	**dongles;
 	t_coder		**coders;
+	pthread_t	thread_monitor;
 
 	data = init_data(argv, start);
 	printf("Launching program -> %ld ms\n", calcul_time(data));
@@ -47,7 +48,10 @@ int	launch_program(char **argv, long start)
 	if (!coders)
 		return (crash_coders(data, dongles));
 	launch_coders(coders);
+	launch_monitor(coders, &thread_monitor);
+	update_simul_end(coders);
 	unlaunch_coders(coders);
+	unlaunch_monitor(thread_monitor);
 	free_all(data, dongles, coders);
 	return (1);
 }

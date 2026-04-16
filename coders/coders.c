@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:19:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 14:22:27 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 16:14:05 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	launch_coders(t_coder **coders)
 			coders[i]);
 		i++;
 	}
-	while (!is_nb_compiled(coders))
-		usleep(10000);
 }
 
 void	unlaunch_coders(t_coder **coders)

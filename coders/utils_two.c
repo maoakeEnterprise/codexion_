@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:20:42 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 14:58:46 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 16:14:46 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,10 @@ void	print_log(t_coder *coder, char *str)
 		printf("%ld %d %s", timer, coder->id, str);
 	}
 	pthread_mutex_unlock(&coder->data->write_mutex);
+}
+
+void	update_simul_end(t_coder **coders)
+{
+	while (!is_nb_compiled(coders))
+		usleep(10000);
 }
