@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 17:43:27 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 20:01:28 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,16 @@ t_dongle	**init_dongles(int nb_dongles)
 t_coder	*init_coder(t_data *data, t_dongle *left,
 	t_dongle *right, int id)
 {
-	t_coder	*coder;
+	t_coder			*coder;
+	struct timeval	t;
 
+	gettimeofday(&t, NULL);
 	coder = malloc(sizeof(t_coder));
 	if (!coder)
 		return (NULL);
 	coder->id = id;
 	coder->compile_count = 0;
-	coder->last_compile_start = 0;
+	coder->last_compile_start = t.tv_usec;
 	coder->data = data;
 	coder->left_dongle = left;
 	coder->right_dongle = right;

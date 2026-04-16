@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 15:05:46 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 16:35:56 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 20:03:33 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,12 @@ int	is_burned(t_coder *coder)
 	long			actual_time;
 
 	gettimeofday(&t, NULL);
-	actual_time = t.tv_sec;
+	pthread_mutex_lock(&coder->data->data_mutex);
+	actual_time = t.tv_usec;
 	time_burnout = coder->data->time_burnout;
 	last_comp = coder->last_compile_start;
 	total_time = actual_time - last_comp;
-	printf("total -> %ld burn ->%ld last ->%ld \n", total_time, time_burnout, last_comp);
+	pthread_mutex_unlock(&coder->data->data_mutex);
 	if (total_time > time_burnout)
 		return (1);
 	return (0);

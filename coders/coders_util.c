@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 12:22:05 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 15:16:04 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 19:58:28 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	compiling(t_coder *coder)
 
 	gettimeofday(&t, NULL);
 	print_log(coder, "is compiling\n");
-	usleep(coder->data->time_compile * 1000);
 	pthread_mutex_lock(&coder->data->data_mutex);
 	coder->compile_count++;
 	coder->last_compile_start = t.tv_usec;
+	usleep(coder->data->time_compile * 1000);
 	pthread_mutex_unlock(&coder->data->data_mutex);
 }
 
