@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:19:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 17:52:44 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 14:22:27 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	lock_dongles(t_coder *coder)
 {
 	pthread_mutex_lock(&(coder->left_dongle->mutex));
-	printf("%d has taken a dongle\n", coder->id);
+	print_log(coder, "has taken a dongle\n");
 	pthread_mutex_lock(&(coder->right_dongle->mutex));
-	printf("%d has taken a dongle\n", coder->id);
+	print_log(coder, "has taken a dongle\n");
 }
 
 void	unlock_dongles(t_coder *coder)
 {
 	pthread_mutex_unlock(&(coder->left_dongle->mutex));
-	printf("%d has untaken a dongle\n", coder->id);
+	print_log(coder, "has untaken a dongle\n");
 	pthread_mutex_unlock(&(coder->right_dongle->mutex));
-	printf("%d has untaken a dongle\n", coder->id);
+	print_log(coder, "has untaken a dongle\n");
 }
 
 void	*working_coder(void *arg)
