@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:19:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 16:14:05 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 22:22:03 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,23 @@
 
 void	lock_dongles(t_coder *coder)
 {
-	pthread_mutex_lock(&(coder->left_dongle->mutex));
+	t_dongle *first;
+	t_dongle *second;
+
+	if (coder->left_dongle->id < coder->right_dongle->id)
+	{
+		first = coder->left_dongle;
+		second = coder->right_dongle;
+	}
+	else
+	{
+		
+		first = coder->right_dongle;
+		second = coder->left_dongle;
+	}
+	pthread_mutex_lock(&first->mutex);
 	print_log(coder, "has taken a dongle\n");
-	pthread_mutex_lock(&(coder->right_dongle->mutex));
+	pthread_mutex_lock(&second->mutex);
 	print_log(coder, "has taken a dongle\n");
 }
 
