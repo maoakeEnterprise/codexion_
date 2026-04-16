@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:20:42 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 14:19:28 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 14:58:46 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long	calcul_time(t_data *data)
 {
-	struct 	timeval t;
-	long	now;
+	struct timeval	t;
+	long			now;
 
 	gettimeofday(&t, NULL);
 	now = t.tv_usec;
@@ -38,7 +38,7 @@ int	is_nb_compiled(t_coder **coders)
 
 int	get_simul_end(t_data *data)
 {
-	int end;
+	int	end;
 
 	pthread_mutex_lock(&data->data_mutex);
 	end = data->simul_end;
@@ -50,8 +50,11 @@ void	print_log(t_coder *coder, char *str)
 {
 	long	timer;
 
-	timer = calcul_time(coder->data);
 	pthread_mutex_lock(&coder->data->write_mutex);
-	printf("%ld %d %s", timer, coder->id, str);
+	if (!get_simul_end(coder->data))
+	{
+		timer = calcul_time(coder->data);
+		printf("%ld %d %s", timer, coder->id, str);
+	}
 	pthread_mutex_unlock(&coder->data->write_mutex);
 }

@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 12:22:05 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 14:20:01 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 14:58:01 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	compiling(t_coder *coder)
 void	debugging(t_coder *coder)
 {
 	print_log(coder, "is debugging\n");
-	usleep(coder->data->time_debug * 1000); 	
+	usleep(coder->data->time_debug * 1000);
 }
 
 void	refactoring(t_coder *coder)
@@ -49,4 +49,3 @@ int	calcul_compile(t_coder **coders)
 	pthread_mutex_unlock(&coders[0]->data->data_mutex);
 	return (compiled);
 }
-

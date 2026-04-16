@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/15 15:21:39 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 14:56:21 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	struct	timeval t;
-	long	start_time;
+	struct timeval	t;
+	long			start_time;
 
 	gettimeofday(&t, NULL);
 	printf("Starting program with argc = %d\n", argc);
@@ -36,20 +36,20 @@ int	launch_program(char **argv, long start)
 	t_dongle	**dongles;
 	t_coder		**coders;
 
-		data = init_data(argv, start);
-		printf("Launching program -> %ld ms\n", calcul_time(data));
-		if (!data)
-			return (0);
-		dongles = init_dongles(data->nb_coders);
-		if (!dongles)
-			return(crash_dongle(data));
-		coders = init_coders(data, dongles, data->nb_coders);
-		if (!coders)
-			return (crash_coders(data, dongles));
-		launch_coders(coders);
-		unlaunch_coders(coders);
-		free_all(data, dongles, coders);
-		return (1);
+	data = init_data(argv, start);
+	printf("Launching program -> %ld ms\n", calcul_time(data));
+	if (!data)
+		return (0);
+	dongles = init_dongles(data->nb_coders);
+	if (!dongles)
+		return (crash_dongle(data));
+	coders = init_coders(data, dongles, data->nb_coders);
+	if (!coders)
+		return (crash_coders(data, dongles));
+	launch_coders(coders);
+	unlaunch_coders(coders);
+	free_all(data, dongles, coders);
+	return (1);
 }
 
 void	message_error(char *message)

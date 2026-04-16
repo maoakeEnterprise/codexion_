@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 14:22:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 14:45:25 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 14:57:21 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	crash_dongle(t_data *data)
 	return (0);
 }
 
-int crash_coders(t_data *data, t_dongle ** dongles)
+int	crash_coders(t_data *data, t_dongle **dongles)
 {
 	free_dongles(dongles);
 	free_data(data);
