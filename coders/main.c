@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 16:18:20 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 22:13:47 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	gettimeofday(&t, NULL);
 	printf("Starting program with argc = %d\n", argc);
-	start_time = t.tv_usec;
+	start_time = t.tv_sec * 1000 + t.tv_usec / 1000;
 	if (argc == 9 && parsing(argc, argv))
 	{
 		launch_program(argv, start_time);

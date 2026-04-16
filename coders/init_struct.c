@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 20:01:28 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 22:13:47 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_coder	*init_coder(t_data *data, t_dongle *left,
 		return (NULL);
 	coder->id = id;
 	coder->compile_count = 0;
-	coder->last_compile_start = t.tv_usec;
+	coder->last_compile_start = t.tv_sec * 1000 + t.tv_usec / 1000;
 	coder->data = data;
 	coder->left_dongle = left;
 	coder->right_dongle = right;

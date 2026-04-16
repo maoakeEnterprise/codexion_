@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:20:42 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 16:14:46 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/16 22:13:47 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ long	calcul_time(t_data *data)
 	long			now;
 
 	gettimeofday(&t, NULL);
-	now = t.tv_usec;
+	now = t.tv_sec * 1000 + t.tv_usec / 1000;
 	return (now - data->start_time);
 }
 
