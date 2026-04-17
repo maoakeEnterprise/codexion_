@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 18:41:14 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 20:06:10 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	launch_program(char **argv, long start)
 	update_simul_end(coders);
 	unlaunch_coders(coders);
 	unlaunch_monitor(thread_monitor);
+	printf("NB COMPILED: %d\n", calcul_compile(coders));
 	free_all(data, dongles, coders);
 	return (1);
 }
