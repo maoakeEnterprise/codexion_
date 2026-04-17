@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 18:40:50 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:57:11 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_coder	*init_coder(t_data *data, t_dongle *left,
 	coder = malloc(sizeof(t_coder));
 	if (!coder)
 		return (NULL);
-	coder->id = id;
+	coder->id = id + 1;
 	coder->compile_count = 0;
 	coder->last_compile_start = t.tv_sec * 1000 + t.tv_usec / 1000;
 	coder->data = data;
