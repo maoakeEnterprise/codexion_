@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 18:15:34 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:40:50 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ t_data	*init_data(char **argv, long start)
 	data->nb_compile_required = atoi(argv[6]);
 	data->dongle_cooldown = ft_atol(argv[7]);
 	data->is_edf = is_edf(argv[8]);
+	data->coders = NULL;
 	data->simul_end = 0;
 	data->start_time = start;
 	pthread_mutex_init(&data->write_mutex, NULL);

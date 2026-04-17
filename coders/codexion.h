@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 18:15:24 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:40:00 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_data
 	int				simul_end;
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	data_mutex;
+	t_coder			**coders;
 }	t_data;
 
 typedef struct s_dongle
