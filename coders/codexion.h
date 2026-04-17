@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 19:08:41 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:45:21 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void		logical_edf(t_coder *coder, t_dongle *dongle);
 long		get_timer_coder(int id, t_coder **coders);
 void		logical_fifo(t_coder *coder, t_dongle *dongle);
 void		pop_queue(t_dongle *dongle);
+int			is_priority(t_dongle *dongle, t_coder *coder);
 // FUNCTION MONITOR
 void		launch_monitor(t_coder **coders, pthread_t *thread);
 void		unlaunch_monitor(pthread_t thread);
