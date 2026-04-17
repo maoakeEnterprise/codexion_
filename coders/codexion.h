@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 16:24:03 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:18:19 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_dongle
 {
 	int				id;
 	pthread_mutex_t	mutex;
+	pthread_cond_t	cond;
 	int				available_at;
 }	t_dongle;
 

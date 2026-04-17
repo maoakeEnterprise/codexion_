@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 15:21:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/14 14:14:58 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:20:05 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	free_data(t_data *data)
 void	free_dongle(t_dongle *dongle)
 {
 	pthread_mutex_destroy(&dongle->mutex);
+	pthread_cond_destroy(&dongle->cond);
 	free(dongle);
 }
 

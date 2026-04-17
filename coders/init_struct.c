@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 22:13:47 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:19:15 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_dongle	*init_dongle(int id)
 		return (NULL);
 	dongle->id = id;
 	pthread_mutex_init(&dongle->mutex, NULL);
+	pthread_cond_init(&dongle->cond, NULL);
 	dongle->available_at = 0;
 	return (dongle);
 }
