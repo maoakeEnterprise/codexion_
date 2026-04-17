@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 17:18:19 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:52:02 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,17 @@ int 		crash_coders(t_data *data, t_dongle ** dongles);
 void		compiling(t_coder *coder);
 void		debugging(t_coder *coder);
 void		refactoring(t_coder *coder);
-void		lock_dongles(t_coder *coder);
+int			lock_dongles(t_coder *coder);
 void		unlock_dongles(t_coder *coder);
 void		*working_coder(void *arg);
 int			calcul_compile(t_coder **coders);
 int			is_nb_compiled(t_coder **coders);
 void		launch_coders(t_coder **coders);
 void		unlaunch_coders(t_coder **coders);
+// FUNCtiON IN DONGLE
+int			lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder);
+t_dongle	*get_first_dongle(t_coder *coder);
+t_dongle	*get_second_dongle(t_coder *coder);
 // FUNCTION MONITOR
 void		launch_monitor(t_coder **coders, pthread_t *thread);
 void		unlaunch_monitor(pthread_t thread);

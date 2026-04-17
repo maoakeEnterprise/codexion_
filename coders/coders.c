@@ -6,39 +6,41 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:19:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 22:22:03 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:52:49 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-void	lock_dongles(t_coder *coder)
+int	lock_dongles(t_coder *coder)
 {
 	t_dongle *first;
 	t_dongle *second;
 
-	if (coder->left_dongle->id < coder->right_dongle->id)
+	first = get_first_dongle(coder);
+	second = get_second_dongle(coder);
+	if (!lock_dongle(coder->data, first, coder))
+		return (0);
+	if(!lock_dongle(coder->data, second, coder))
 	{
-		first = coder->left_dongle;
-		second = coder->right_dongle;
+		pthread_mutex_unlock(&first->mutex);
+		return (0);
 	}
-	else
-	{
-		
-		first = coder->right_dongle;
-		second = coder->left_dongle;
-	}
-	pthread_mutex_lock(&first->mutex);
-	print_log(coder, "has taken a dongle\n");
-	pthread_mutex_lock(&second->mutex);
-	print_log(coder, "has taken a dongle\n");
+	return (1);
 }
 
 void	unlock_dongles(t_coder *coder)
 {
+	long	now;
+
+	now = calcul_time(coder->data);
+	coder->left_dongle->available_at = now;
+	coder->right_dongle->available_at = now;
 	pthread_mutex_unlock(&(coder->left_dongle->mutex));
+	pthread_cond_broadcast(&coder->left_dongle->cond);
 	print_log(coder, "has untaken a dongle\n");
 	pthread_mutex_unlock(&(coder->right_dongle->mutex));
+	pthread_cond_broadcast(&coder->left_dongle->cond);
 	print_log(coder, "has untaken a dongle\n");
 }
 
@@ -49,7 +51,8 @@ void	*working_coder(void *arg)
 	coder = (void *)arg;
 	while (!get_simul_end(coder->data))
 	{
-		lock_dongles(coder);
+		if (!lock_dongles(coder))
+			return (NULL);
 		compiling(coder);
 		unlock_dongles(coder);
 		debugging(coder);
