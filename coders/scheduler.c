@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:18:26 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 19:11:05 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:53:58 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	logical_edf(t_coder *coder, t_dongle *dongle)
 	long	value;
 	long	tmp;
 
-	i = dongle->size_q;
+	i = dongle->size_q - 1;
 	value = coder->last_compile_start;
 	while (i >= 0)
 	{
