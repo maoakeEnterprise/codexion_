@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 19:04:53 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:08:41 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,12 @@ void		unlaunch_coders(t_coder **coders);
 int			lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder);
 t_dongle	*get_first_dongle(t_coder *coder);
 t_dongle	*get_second_dongle(t_coder *coder);
+// FUNCTION IN SCHEDULER
+void		add_to_queue(t_coder *coder, t_dongle *dongle);
+void		logical_edf(t_coder *coder, t_dongle *dongle);
+long		get_timer_coder(int id, t_coder **coders);
+void		logical_fifo(t_coder *coder, t_dongle *dongle);
+void		pop_queue(t_dongle *dongle);
 // FUNCTION MONITOR
 void		launch_monitor(t_coder **coders, pthread_t *thread);
 void		unlaunch_monitor(pthread_t thread);

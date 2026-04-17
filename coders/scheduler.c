@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:18:26 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 18:58:42 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:11:05 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	logical_edf(t_coder *coder, t_dongle *dongle)
 	{
 		tmp = get_timer_coder(dongle->queue[i], coder->data->coders);
 		if (tmp < value)
-			break;
-		dongle->queue[i + 1] = dongle->queue[i];	
+			break ;
+		dongle->queue[i + 1] = dongle->queue[i];
 		i--;
 	}
 	dongle->queue[i + 1] = coder->id;
@@ -56,6 +56,7 @@ long	get_timer_coder(int id, t_coder **coders)
 			return (coders[i]->last_compile_start);
 		i++;
 	}
+	return (0);
 }
 
 void	logical_fifo(t_coder *coder, t_dongle *dongle)
@@ -70,7 +71,7 @@ void	pop_queue(t_dongle *dongle)
 	i = 0;
 	while (i < dongle->size_q - 1)
 	{
-		dongle->queue[i] = dongle->queue[i + 1]
+		dongle->queue[i] = dongle->queue[i + 1];
 		i++;
 	}
 	dongle->size_q--;

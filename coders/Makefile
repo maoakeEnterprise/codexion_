@@ -3,7 +3,7 @@
 #============================
 
 SRC = main.c parsing.c init_struct.c utils.c free.c free_crash.c coders.c coders_util.c \
-	  utils_two.c monitor.c dongle.c
+	  utils_two.c monitor.c dongle.c scheduler.c
 
 TEST = test_parsing.c parsing.c
 
