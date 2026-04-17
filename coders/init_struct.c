@@ -6,13 +6,13 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:52:58 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 17:19:15 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:15:34 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-t_dongle	*init_dongle(int id)
+t_dongle	*init_dongle(int id, int size)
 {
 	t_dongle	*dongle;
 
@@ -23,6 +23,15 @@ t_dongle	*init_dongle(int id)
 	pthread_mutex_init(&dongle->mutex, NULL);
 	pthread_cond_init(&dongle->cond, NULL);
 	dongle->available_at = 0;
+	dongle->queue = malloc((size) * sizeof(int));
+	if (!dongle->queue)
+	{
+		pthread_mutex_destroy(&dongle->mutex);
+		pthread_cond_destroy(&dongle->cond);
+		free(dongle);
+		return (NULL);
+	}
+	dongle->size_q = 0;
 	return (dongle);
 }
 
@@ -38,7 +47,7 @@ t_dongle	**init_dongles(int nb_dongles)
 	my_calloc((void **)dongles, nb_dongles);
 	while (i < nb_dongles)
 	{
-		dongles[i] = init_dongle(i);
+		dongles[i] = init_dongle(i, nb_dongles);
 		if (!dongles[i])
 		{
 			free_dongles(dongles);

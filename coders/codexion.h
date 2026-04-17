@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 17:52:02 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 18:15:24 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_dongle
 	pthread_mutex_t	mutex;
 	pthread_cond_t	cond;
 	int				available_at;
+	int				*queue;
+	int				size_q;
 }	t_dongle;
 
 typedef struct s_coder
@@ -64,7 +66,7 @@ int			text_scheduler(char *text);
 int			parsing(int argc, char **argv);
 int			is_edf(char *text);
 // FUNCTIONS INIT STRUCT
-t_dongle	*init_dongle(int id);
+t_dongle	*init_dongle(int id, int size);
 t_dongle	**init_dongles(int nb_dongles);
 t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right, int id);
 t_data		*init_data(char **argv, long start);
