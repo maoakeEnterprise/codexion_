@@ -64,7 +64,7 @@ valgrind:
 	valgrind --tool=helgrind ./$(NAME) 22 22 22 10 22 22 22 fifo
 
 norming:
-	watch norminette $(SRC)
+	watch norminette $(SRC) codexion.h
 
 fclean: clean
 	rm -f $(NAME) $(NAME_TEST1) $(NAME_TEST2)

@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 17:12:19 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 17:57:21 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:05:23 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_dongle	*get_second_dongle(t_coder *coder)
 
 	if (coder->left_dongle->id < coder->right_dongle->id)
 	{
-		second = coder->right_dongle;;
+		second = coder->right_dongle;
 	}
 	else
 	{

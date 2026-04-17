@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:19:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 17:57:21 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:06:25 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	lock_dongles(t_coder *coder)
 {
-	t_dongle *first;
-	t_dongle *second;
+	t_dongle	*first;
+	t_dongle	*second;
 
 	first = get_first_dongle(coder);
 	second = get_second_dongle(coder);
 	if (!lock_dongle(coder->data, first, coder))
 		return (0);
-	if(!lock_dongle(coder->data, second, coder))
+	if (!lock_dongle(coder->data, second, coder))
 	{
 		pthread_mutex_unlock(&first->mutex);
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 18:40:00 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:04:53 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
+
+typedef struct s_coder	t_coder;
 
 typedef struct s_data
 {
@@ -93,7 +95,7 @@ int			launch_program(char **argv, long start);
 void		message_error(char *message);
 // CRASH MALLOC
 int			crash_dongle(t_data *data);
-int 		crash_coders(t_data *data, t_dongle ** dongles);
+int			crash_coders(t_data *data, t_dongle **dongles);
 // FUNCTION CODERS
 void		compiling(t_coder *coder);
 void		debugging(t_coder *coder);

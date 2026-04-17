@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 15:05:46 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 22:13:47 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 19:05:56 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*monitor(void *arg)
 	t_coder	**coders;
 	t_data	*data;
 	int		i;
-	
+
 	coders = (t_coder **)arg;
 	data = coders[0]->data;
 	while (!get_simul_end(data))
@@ -71,5 +71,4 @@ int	is_burned(t_coder *coder)
 	if (total_time > time_burnout)
 		return (1);
 	return (0);
-	
 }
