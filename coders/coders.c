@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:19:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 17:52:49 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/17 17:57:21 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	unlock_dongles(t_coder *coder)
 	pthread_cond_broadcast(&coder->left_dongle->cond);
 	print_log(coder, "has untaken a dongle\n");
 	pthread_mutex_unlock(&(coder->right_dongle->mutex));
-	pthread_cond_broadcast(&coder->left_dongle->cond);
+	pthread_cond_broadcast(&coder->right_dongle->cond);
 	print_log(coder, "has untaken a dongle\n");
 }
 
