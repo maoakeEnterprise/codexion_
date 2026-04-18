@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 15:05:46 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 19:05:56 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/18 22:21:11 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	stop_on_burn(t_coder *coder, t_data *data)
 	pthread_mutex_lock(&data->write_mutex);
 	pthread_mutex_lock(&data->data_mutex);
 	data->simul_end = 1;
-	printf("%ld %d died\n", calcul_time(coder->data), coder->id);
+	printf("%ld %d burned out\n", calcul_time(coder->data), coder->id);
 	pthread_mutex_unlock(&data->data_mutex);
 	pthread_mutex_unlock(&data->write_mutex);
 }

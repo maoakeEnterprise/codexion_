@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 17:12:19 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 19:48:21 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/18 22:20:52 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 		}
 	}
 	pop_queue(dongle);
-	print_log(coder, "has taken dongle\n");
+	print_log(coder, "has taken a dongle\n");
 	return (1);
 }
 
