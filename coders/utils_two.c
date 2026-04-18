@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:20:42 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 22:13:47 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/18 23:29:34 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void	print_log(t_coder *coder, char *str)
 
 void	update_simul_end(t_coder **coders)
 {
-	while (!is_nb_compiled(coders))
+	while (!is_nb_compiled(coders) && !get_simul_end(coders[0]->data))
 		usleep(10000);
 }

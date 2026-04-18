@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 17:12:19 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/18 22:20:52 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/19 00:04:21 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 	while (!is_priority(dongle, coder)
 		|| calcul_time(data) < dongle->available_at)
 	{
-		pthread_cond_wait(&dongle->cond, &dongle->mutex);
 		if (get_simul_end(coder->data))
 		{
 			pthread_mutex_unlock(&dongle->mutex);

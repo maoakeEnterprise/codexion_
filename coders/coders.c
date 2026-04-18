@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:19:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/18 22:31:37 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/19 00:03:55 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	unlock_dongles(t_coder *coder)
 	coder->left_dongle->available_at = now + dongle_cd;
 	coder->right_dongle->available_at = now + dongle_cd;
 	pthread_mutex_unlock(&(coder->left_dongle->mutex));
-	pthread_cond_broadcast(&coder->left_dongle->cond);
 	pthread_mutex_unlock(&(coder->right_dongle->mutex));
-	pthread_cond_broadcast(&coder->right_dongle->cond);
 }
 
 void	*working_coder(void *arg)
@@ -63,6 +61,7 @@ void	*working_coder(void *arg)
 		debugging(coder);
 		refactoring(coder);
 	}
+	unlock_dongles(coder);
 	return (NULL);
 }
 
