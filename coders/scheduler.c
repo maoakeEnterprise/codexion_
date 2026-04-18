@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:18:26 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 19:53:58 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/18 22:29:21 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,19 @@ void	logical_edf(t_coder *coder, t_dongle *dongle)
 
 long	get_timer_coder(int id, t_coder **coders)
 {
-	int	i;
+	int		i;
+	long	res;
+	long	bn;
 
 	i = 0;
 	while (coders[i])
 	{
 		if (id == coders[i]->id)
-			return (coders[i]->last_compile_start);
+		{
+			res = coders[i]->last_compile_start;
+			bn = coders[i]->data->time_burnout;
+			return (res + bn);
+		}
 		i++;
 	}
 	return (0);

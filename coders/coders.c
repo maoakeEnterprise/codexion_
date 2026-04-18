@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:19:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/18 22:20:41 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/18 22:31:37 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ int	lock_dongles(t_coder *coder)
 void	unlock_dongles(t_coder *coder)
 {
 	long	now;
+	long	dongle_cd;
 
 	now = calcul_time(coder->data);
-	coder->left_dongle->available_at = now;
-	coder->right_dongle->available_at = now;
+	dongle_cd = coder->data->dongle_cooldown;
+	coder->left_dongle->available_at = now + dongle_cd;
+	coder->right_dongle->available_at = now + dongle_cd;
 	pthread_mutex_unlock(&(coder->left_dongle->mutex));
 	pthread_cond_broadcast(&coder->left_dongle->cond);
 	pthread_mutex_unlock(&(coder->right_dongle->mutex));
