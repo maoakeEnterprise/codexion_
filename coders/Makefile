@@ -48,7 +48,7 @@ test: $(OBJ_TEST)
 # number_of_coders        time_to_burnout                    time_to_compile    time_to_debug
 # time_to_refactor        number_of_compiles_required        dongle_cooldown scheduler
 codex:
-	./$(NAME) 4 1200 100 200 200 5 200 fifo
+	./$(NAME) 10 800 100 200 200 25 200 fifo
 
 test_init: $(OBJ_TEST_INIT)
 	$(CC) $(CFLAGS) $(OBJ_TEST_INIT) -o $(NAME_TEST2)

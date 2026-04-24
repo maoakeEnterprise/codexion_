@@ -38,19 +38,18 @@ void	refactoring(t_coder *coder)
 	usleep(coder->data->time_refactor * 1000);
 }
 
-int	calcul_compile(t_coder **coders)
+int	check_compiled(t_coder **coders)
 {
 	int	i;
-	int	compiled;
+	int	compiled_required;
 
 	i = 0;
-	compiled = 0;
-	pthread_mutex_lock(&coders[0]->data->data_mutex);
+	compiled_required = coders[0]->data->nb_compile_required;
 	while (coders[i])
 	{
-		compiled += coders[i]->compile_count;
+		if (coders[i]->compile_count < compiled_required)
+			return (0);
 		i++;
 	}
-	pthread_mutex_unlock(&coders[0]->data->data_mutex);
-	return (compiled);
+	return (1);
 }

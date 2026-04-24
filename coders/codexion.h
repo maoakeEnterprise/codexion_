@@ -104,7 +104,7 @@ void		refactoring(t_coder *coder);
 int			lock_dongles(t_coder *coder);
 void		unlock_dongles(t_coder *coder);
 void		*working_coder(void *arg);
-int			calcul_compile(t_coder **coders);
+int			check_compiled(t_coder **coders);
 int			is_nb_compiled(t_coder **coders);
 void		launch_coders(t_coder **coders);
 void		unlaunch_coders(t_coder **coders);

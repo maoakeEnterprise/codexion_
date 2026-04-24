@@ -57,7 +57,6 @@ long	get_timer_coder(int id, t_coder **coders)
 		if (id == coders[i]->id)
 		{
 			res = coders[i]->last_compile_start;
-			print_log(coders[i], "last time compile");
 			bn = coders[i]->data->time_burnout;
 			return (res + bn);
 		}

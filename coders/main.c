@@ -61,7 +61,6 @@ int	launch_program(char **argv, long start)
 	update_simul_end(coders);
 	unlaunch_coders(coders);
 	unlaunch_monitor(thread_monitor);
-	printf("NB COMPILED: %d\n", calcul_compile(coders));
 	free_all(data, dongles, coders);
 	return (1);
 }

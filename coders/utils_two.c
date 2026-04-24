@@ -24,10 +24,7 @@ long	calcul_time(t_data *data)
 
 int	is_nb_compiled(t_coder **coders)
 {
-	int	compiled;
-
-	compiled = calcul_compile(coders);
-	if (compiled < coders[0]->data->nb_compile_required)
+	if (!check_compiled(coders))
 		return (0);
 	pthread_mutex_lock(&coders[0]->data->data_mutex);
 	coders[0]->data->simul_end = 1;
