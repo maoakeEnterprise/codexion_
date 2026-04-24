@@ -14,18 +14,14 @@
 
 int	lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 {
-	pthread_mutex_lock(&dongle->mutex);
 	add_to_queue(coder, dongle);
 	while (!is_priority(dongle, coder)
 		|| calcul_time(data) < dongle->available_at)
 	{
 		if (get_simul_end(coder->data))
-		{
-			pthread_mutex_unlock(&dongle->mutex);
 			return (0);
-		}
 	}
-	pop_queue(dongle);
+	pthread_mutex_lock(&dongle->mutex);
 	print_log(coder, "has taken a dongle\n");
 	return (1);
 }
@@ -34,14 +30,10 @@ t_dongle	*get_first_dongle(t_coder *coder)
 {
 	t_dongle	*first;
 
-	if (coder->left_dongle->id < coder->right_dongle->id)
-	{
+	if (coder->id % 2 == 0)
 		first = coder->left_dongle;
-	}
 	else
-	{
 		first = coder->right_dongle;
-	}
 	return (first);
 }
 
@@ -49,13 +41,9 @@ t_dongle	*get_second_dongle(t_coder *coder)
 {
 	t_dongle	*second;
 
-	if (coder->left_dongle->id < coder->right_dongle->id)
-	{
+	if (coder->id % 2 == 0)
 		second = coder->right_dongle;
-	}
 	else
-	{
 		second = coder->left_dongle;
-	}
 	return (second);
 }

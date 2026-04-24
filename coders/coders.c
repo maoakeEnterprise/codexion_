@@ -38,9 +38,10 @@ void	unlock_dongles(t_coder *coder)
 	dongle_cd = coder->data->dongle_cooldown;
 	coder->left_dongle->available_at = now + dongle_cd;
 	coder->right_dongle->available_at = now + dongle_cd;
-	print_log(coder, "HAS UNLOCK THE DONGLES\n");
 	pthread_mutex_unlock(&(coder->left_dongle->mutex));
+	pop_queue(coder->left_dongle);
 	pthread_mutex_unlock(&(coder->right_dongle->mutex));
+	pop_queue(coder->right_dongle);
 }
 
 void	*working_coder(void *arg)
