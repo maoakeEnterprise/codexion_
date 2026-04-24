@@ -21,8 +21,9 @@ void	compiling(t_coder *coder)
 	pthread_mutex_lock(&coder->data->data_mutex);
 	coder->compile_count++;
 	coder->last_compile_start = t.tv_sec * 1000 + t.tv_usec / 1000;
-	usleep(coder->data->time_compile * 1000);
 	pthread_mutex_unlock(&coder->data->data_mutex);
+	usleep(coder->data->time_compile * 1000);
+	
 }
 
 void	debugging(t_coder *coder)

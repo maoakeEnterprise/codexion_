@@ -32,7 +32,6 @@ int	is_nb_compiled(t_coder **coders)
 	pthread_mutex_lock(&coders[0]->data->data_mutex);
 	coders[0]->data->simul_end = 1;
 	pthread_mutex_unlock(&coders[0]->data->data_mutex);
-	printf("SOMETHING NEED TO BE FINISH\n");
 	return (1);
 }
 

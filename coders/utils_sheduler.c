@@ -15,6 +15,8 @@
 int	is_priority(t_dongle *dongle, t_coder *coder)
 {
 	if (dongle->queue[0] == coder->id)
+	{
 		return (1);
+	}
 	return (0);
 }

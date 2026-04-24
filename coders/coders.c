@@ -49,13 +49,12 @@ void	*working_coder(void *arg)
 	t_coder	*coder;
 
 	coder = (void *)arg;
+	if (coder->id % 2 == 0)
+		usleep(100);
 	while (!get_simul_end(coder->data))
 	{
 		if (!lock_dongles(coder))
-		{
-			print_log(coder, "DEAD END\n");
 			return (NULL);
-		}
 		if (get_simul_end(coder->data))
 		{
 			unlock_dongles(coder);
@@ -80,7 +79,7 @@ void	launch_coders(t_coder **coders)
 		pthread_create(&coders[i]->thread_id, NULL, working_coder,
 			coders[i]);
 		i++;
-	}
+	};
 }
 
 void	unlaunch_coders(t_coder **coders)

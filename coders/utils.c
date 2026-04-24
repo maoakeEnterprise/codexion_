@@ -59,12 +59,7 @@ t_dongle	*dongle_left(t_dongle **dongles, int id_coder)
 
 t_dongle	*dongle_right(t_dongle **dongles, int id_coder)
 {
-	int	len_dongles;
-
-	len_dongles = get_len_dongles(dongles);
-	if (id_coder == (len_dongles - 1))
-		return (dongles[0]);
-	return (dongles[id_coder + 1]);
+	return (dongles[id_coder]);
 }
 
 void	my_calloc(void **tab, int len)
