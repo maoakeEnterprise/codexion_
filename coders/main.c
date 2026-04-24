@@ -51,11 +51,6 @@ int	launch_program(char **argv, long start)
 	int	i;
 
 	i = 0;
-	while (coders[i])
-	{
-		printf("coder ID : %d left : %d right %d\n", coders[i]->id, coders[i]->left_dongle->id, coders[i]->right_dongle->id);
-		i++;
-	}
 	launch_coders(coders);
 	launch_monitor(coders, &thread_monitor);
 	update_simul_end(coders);
