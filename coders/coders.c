@@ -38,6 +38,7 @@ void	unlock_dongles(t_coder *coder)
 	dongle_cd = coder->data->dongle_cooldown;
 	coder->left_dongle->available_at = now + dongle_cd;
 	coder->right_dongle->available_at = now + dongle_cd;
+	print_log(coder, "HAS UNLOCK THE DONGLES\n");
 	pthread_mutex_unlock(&(coder->left_dongle->mutex));
 	pthread_mutex_unlock(&(coder->right_dongle->mutex));
 }
@@ -50,7 +51,10 @@ void	*working_coder(void *arg)
 	while (!get_simul_end(coder->data))
 	{
 		if (!lock_dongles(coder))
+		{
+			print_log(coder, "DEAD END\n");
 			return (NULL);
+		}
 		if (get_simul_end(coder->data))
 		{
 			unlock_dongles(coder);

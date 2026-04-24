@@ -43,6 +43,7 @@ typedef struct s_data
 typedef struct s_dongle
 {
 	int				id;
+	int				is_available;
 	pthread_mutex_t	mutex;
 	pthread_cond_t	cond;
 	int				available_at;

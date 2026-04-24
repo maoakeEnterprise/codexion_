@@ -20,6 +20,7 @@ t_dongle	*init_dongle(int id, int size)
 	if (!dongle)
 		return (NULL);
 	dongle->id = id;
+	dongle->is_available = 1;
 	pthread_mutex_init(&dongle->mutex, NULL);
 	pthread_cond_init(&dongle->cond, NULL);
 	dongle->available_at = 0;

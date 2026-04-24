@@ -45,10 +45,10 @@ test: $(OBJ_TEST)
 	$(CC) $(CFLAGS) $(OBJ_TEST) -o $(NAME_TEST1)
 	./$(NAME_TEST1)
 
-# number_of_coders time_to_burnout time_to_compile time_to_debug
-# time_to_refactor number_of_compiles_required dongle_cooldown scheduler
+# number_of_coders        time_to_burnout                    time_to_compile    time_to_debug
+# time_to_refactor        number_of_compiles_required        dongle_cooldown scheduler
 codex:
-	./$(NAME) 22 60 60 60 60 22 60 fifo
+	./$(NAME) 20 60 20 60 60 22 60 fifo
 
 test_init: $(OBJ_TEST_INIT)
 	$(CC) $(CFLAGS) $(OBJ_TEST_INIT) -o $(NAME_TEST2)
