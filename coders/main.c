@@ -48,9 +48,6 @@ int	launch_program(char **argv, long start)
 	if (!coders)
 		return (crash_coders(data, dongles));
 	data->coders = coders;
-	int	i;
-
-	i = 0;
 	launch_coders(coders);
 	launch_monitor(coders, &thread_monitor);
 	update_simul_end(coders);
