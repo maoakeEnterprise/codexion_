@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 15:21:21 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 18:14:37 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/27 20:15:06 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_dongle(t_dongle *dongle)
 {
 	pthread_mutex_destroy(&dongle->mutex);
 	pthread_mutex_destroy(&dongle->mutex_q);
+	pthread_mutex_destroy(&dongle->mutex_avail);
 	free(dongle->queue);
 	free(dongle);
 }
@@ -48,6 +49,7 @@ void	free_coders(t_coder **coders)
 	while (coders[i])
 	{
 		free(coders[i]);
+		pthread_mutex_destroy(&coders[i]->mutex_coder);
 		i++;
 	}
 	free(coders);

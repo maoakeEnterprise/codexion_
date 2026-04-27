@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/17 19:45:21 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/27 20:38:28 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,9 @@ int			check_compiled(t_coder **coders);
 int			is_nb_compiled(t_coder **coders);
 void		launch_coders(t_coder **coders);
 void		unlaunch_coders(t_coder **coders);
+int			get_compile_coder(t_coder *coder);
+void		set_compile_coder(t_coder *coder);
+long		get_last_time_comp(t_coder *coder);
 // FUNCtiON IN DONGLE
 int			lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder);
 t_dongle	*get_first_dongle(t_coder *coder);

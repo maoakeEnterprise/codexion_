@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 18:18:26 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/18 22:29:21 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/27 20:41:51 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	logical_edf(t_coder *coder, t_dongle *dongle)
 	int		id_coder;
 
 	i = dongle->size_q - 1;
-	value = coder->last_compile_start;
+	value = get_last_time_comp(coder);
 	pthread_mutex_lock(&dongle->mutex_q);
 	while (i >= 0)
 	{
@@ -54,12 +54,10 @@ void	logical_edf(t_coder *coder, t_dongle *dongle)
 
 long	get_timer_coder(int id, t_coder **coders)
 {
-	int		i;
 	long	res;
 	long	bn;
 
-	i = 0;
-	res = coders[id - 1]->last_compile_start;
+	res = get_last_time_comp(coders[id - 1]);
 	bn = coders[id - 1]->data->time_burnout;
 	return (res + bn);
 }

@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 17:12:19 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/19 00:04:21 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/27 20:55:16 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 	{
 		usleep(10);
 		if (get_simul_end(coder->data))
+		{
+			pop_queue(dongle);
 			return (0);
+		}
 	}
 	pthread_mutex_lock(&dongle->mutex);
 	print_log(coder, "has taken a dongle\n");

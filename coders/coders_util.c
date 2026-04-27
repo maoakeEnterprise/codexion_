@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 12:22:05 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/16 22:13:47 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/27 20:34:20 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	compiling(t_coder *coder)
 
 	gettimeofday(&t, NULL);
 	print_log(coder, "is compiling\n");
-	pthread_mutex_lock(&coder->data->data_mutex);
-	coder->compile_count++;
-	coder->last_compile_start = t.tv_sec * 1000 + t.tv_usec / 1000;
-	pthread_mutex_unlock(&coder->data->data_mutex);
+	set_compile_coder(coder);
 	usleep(coder->data->time_compile * 1000);
 	
 }
@@ -42,12 +39,14 @@ int	check_compiled(t_coder **coders)
 {
 	int	i;
 	int	compiled_required;
+	int	comp_count;
 
 	i = 0;
 	compiled_required = coders[0]->data->nb_compile_required;
 	while (coders[i])
 	{
-		if (coders[i]->compile_count < compiled_required)
+		comp_count = get_compile_coder(coders[i]);
+		if (comp_count < compiled_required)
 			return (0);
 		i++;
 	}
