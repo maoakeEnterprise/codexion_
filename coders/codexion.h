@@ -53,15 +53,16 @@ typedef struct s_dongle
 
 typedef struct s_coder
 {
-	int			id;
-	pthread_t	thread_id;
-	int			compile_count;
-	long		last_compile_start;
+	int				id;
+	pthread_t		thread_id;
+	pthread_mutex_t	mutex_coder;
+	int				compile_count;
+	long			last_compile_start;
 
-	t_dongle	*left_dongle;
-	t_dongle	*right_dongle;
+	t_dongle		*left_dongle;
+	t_dongle		*right_dongle;
 
-	t_data		*data;
+	t_data			*data;
 }	t_coder;
 
 // FUNCTIONS PARSING

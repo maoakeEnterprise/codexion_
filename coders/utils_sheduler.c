@@ -14,9 +14,12 @@
 
 int	is_priority(t_dongle *dongle, t_coder *coder)
 {
+	int	verif;
+
+	verif = 0;
+	pthread_mutex_lock(&dongle->mutex_q);
 	if (dongle->queue[0] == coder->id)
-	{
-		return (1);
-	}
-	return (0);
+		verif = 1;
+	pthread_mutex_unlock(&dongle->mutex_q);
+	return verif;
 }

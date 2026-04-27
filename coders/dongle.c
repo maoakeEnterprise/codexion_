@@ -21,6 +21,7 @@ int	lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 	while (!is_priority(dongle, coder)
 		|| calcul_time(data) < avail)
 	{
+		usleep(10);
 		if (get_simul_end(coder->data))
 			return (0);
 	}

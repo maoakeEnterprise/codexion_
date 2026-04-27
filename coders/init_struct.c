@@ -71,6 +71,7 @@ t_coder	*init_coder(t_data *data, t_dongle *left,
 	coder = malloc(sizeof(t_coder));
 	if (!coder)
 		return (NULL);
+	pthread_mutex_init(&coder->mutex_coder, NULL);
 	coder->id = id + 1;
 	coder->compile_count = 0;
 	coder->last_compile_start = t.tv_sec * 1000 + t.tv_usec / 1000;
