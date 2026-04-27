@@ -43,9 +43,9 @@ typedef struct s_data
 typedef struct s_dongle
 {
 	int				id;
-	int				is_available;
 	pthread_mutex_t	mutex;
-	pthread_cond_t	cond;
+	pthread_mutex_t	mutex_q;
+	pthread_mutex_t mutex_avail;
 	int				available_at;
 	int				*queue;
 	int				size_q;
@@ -112,6 +112,8 @@ void		unlaunch_coders(t_coder **coders);
 int			lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder);
 t_dongle	*get_first_dongle(t_coder *coder);
 t_dongle	*get_second_dongle(t_coder *coder);
+void		set_cooldown_dong(t_dongle *dongle, long new_cd);
+long		get_cooldown_dong(t_dongle *dongle);
 // FUNCTION IN SCHEDULER
 void		add_to_queue(t_coder *coder, t_dongle *dongle);
 void		logical_edf(t_coder *coder, t_dongle *dongle);

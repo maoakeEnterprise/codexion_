@@ -22,7 +22,7 @@ void	free_data(t_data *data)
 void	free_dongle(t_dongle *dongle)
 {
 	pthread_mutex_destroy(&dongle->mutex);
-	pthread_cond_destroy(&dongle->cond);
+	pthread_mutex_destroy(&dongle->mutex_q);
 	free(dongle->queue);
 	free(dongle);
 }

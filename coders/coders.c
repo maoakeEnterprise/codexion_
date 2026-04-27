@@ -36,8 +36,8 @@ void	unlock_dongles(t_coder *coder)
 
 	now = calcul_time(coder->data);
 	dongle_cd = coder->data->dongle_cooldown;
-	coder->left_dongle->available_at = now + dongle_cd;
-	coder->right_dongle->available_at = now + dongle_cd;
+	set_cooldown_dong(coder->left_dongle, now + dongle_cd);
+	set_cooldown_dong(coder->right_dongle, now + dongle_cd);
 	pthread_mutex_unlock(&(coder->left_dongle->mutex));
 	pop_queue(coder->left_dongle);
 	pthread_mutex_unlock(&(coder->right_dongle->mutex));
@@ -50,7 +50,7 @@ void	*working_coder(void *arg)
 
 	coder = (void *)arg;
 	if (coder->id % 2 == 0)
-		usleep(100);
+		usleep(200);
 	while (!get_simul_end(coder->data))
 	{
 		if (!lock_dongles(coder))

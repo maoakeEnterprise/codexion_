@@ -14,9 +14,12 @@
 
 int	lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder)
 {
+	long	avail;
+
+	avail = get_cooldown_dong(dongle);
 	add_to_queue(coder, dongle);
 	while (!is_priority(dongle, coder)
-		|| calcul_time(data) < dongle->available_at)
+		|| calcul_time(data) < avail)
 	{
 		if (get_simul_end(coder->data))
 			return (0);
