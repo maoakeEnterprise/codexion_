@@ -23,9 +23,6 @@ void	add_to_queue(t_coder *coder, t_dongle *dongle)
 	}
 	else
 		logical_fifo(coder, dongle);
-	pthread_mutex_lock(&dongle->mutex_q);
-	dongle->size_q++;
-	pthread_mutex_unlock(&dongle->mutex_q);
 
 }
 
@@ -36,9 +33,9 @@ void	logical_edf(t_coder *coder, t_dongle *dongle)
 	long	tmp;
 	int		id_coder;
 
-	i = dongle->size_q - 1;
 	value = get_last_time_comp(coder);
 	pthread_mutex_lock(&dongle->mutex_q);
+	i = dongle->size_q - 1;
 	while (i >= 0)
 	{
 		tmp = get_timer_coder(dongle->queue[i], coder->data->coders);
@@ -49,6 +46,7 @@ void	logical_edf(t_coder *coder, t_dongle *dongle)
 		i--;
 	}
 	dongle->queue[i + 1] = coder->id;
+	dongle->size_q++;
 	pthread_mutex_unlock(&dongle->mutex_q);
 }
 
@@ -64,7 +62,10 @@ long	get_timer_coder(int id, t_coder **coders)
 
 void	logical_fifo(t_coder *coder, t_dongle *dongle)
 {
+	pthread_mutex_lock(&dongle->mutex_q);
 	dongle->queue[dongle->size_q] = coder->id;
+	dongle->size_q++;
+	pthread_mutex_unlock(&dongle->mutex_q);
 }
 
 void	pop_queue(t_dongle *dongle)

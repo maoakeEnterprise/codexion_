@@ -31,7 +31,7 @@ DEP_TEST = $(OBJ_TEST:.o=.d)
 
 DEP_TEST_INIT = $(OBJ_TEST_INIT:.o=.d)
 
-.PHONY: all clean fclean re test test_init codex debug norming valgrind
+.PHONY: all clean fclean re test test_init codex debug norming valgrind valgrind2
 
 all: $(NAME)
 
@@ -62,6 +62,9 @@ debug: fclean
 
 valgrind:
 	valgrind --tool=helgrind ./$(NAME) 4 1700 100 200 200 5 10 edf
+
+valgrind2:
+	valgrind --tool=drd ./$(NAME) 4 1700 100 200 200 5 10 edf
 
 norming:
 	watch norminette $(SRC) codexion.h
