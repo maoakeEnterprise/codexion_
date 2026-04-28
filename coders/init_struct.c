@@ -66,7 +66,11 @@ t_coder	*init_coder(t_data *data, t_dongle *left,
 	coder = malloc(sizeof(t_coder));
 	if (!coder)
 		return (NULL);
-	pthread_mutex_init(&coder->mutex_coder, NULL);
+	if (pthread_mutex_init(&coder->mutex_coder, NULL) != 0)
+	{
+		free(coder);
+		return (NULL);
+	}
 	coder->id = id + 1;
 	coder->compile_count = 0;
 	coder->last_compile_start = get_actual_time();

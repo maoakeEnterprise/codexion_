@@ -16,12 +16,12 @@ int	main(int argc, char **argv)
 {
 	long			start_time;
 
-	printf("Starting program with argc = %d\n", argc);
+	// printf("Starting program with argc = %d\n", argc);
 	start_time = get_actual_time();
 	if (argc == 9 && parsing(argc, argv))
 	{
 		launch_program(argv, start_time);
-		printf("FINISH SIMULATION\n");
+		// printf("FINISH SIMULATION\n");
 	}
 	else
 		message_error("ERROR ON THE PARSING\n");
@@ -36,7 +36,7 @@ int	launch_program(char **argv, long start)
 	pthread_t	thread_monitor;
 
 	data = init_data(argv, start);
-	printf("Launching program -> %ld ms\n", calcul_time(data));
+	// printf("Launching program -> %ld ms\n", calcul_time(data));
 	if (!data)
 		return (0);
 	dongles = init_dongles(data->nb_coders);
@@ -46,8 +46,8 @@ int	launch_program(char **argv, long start)
 	if (!coders)
 		return (crash_coders(data, dongles));
 	data->coders = coders;
-	launch_coders(coders);
 	launch_monitor(coders, &thread_monitor);
+	launch_coders(coders);
 	update_simul_end(coders);
 	unlaunch_coders(coders);
 	unlaunch_monitor(thread_monitor);
