@@ -23,3 +23,10 @@ int	is_priority(t_dongle *dongle, t_coder *coder)
 	pthread_mutex_unlock(&dongle->mutex_q);
 	return (verif);
 }
+long	get_actual_time()
+{
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return (t.tv_sec * 1000 + t.tv_usec / 1000);
+}

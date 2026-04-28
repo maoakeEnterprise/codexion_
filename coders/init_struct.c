@@ -74,7 +74,7 @@ t_coder	*init_coder(t_data *data, t_dongle *left,
 	pthread_mutex_init(&coder->mutex_coder, NULL);
 	coder->id = id + 1;
 	coder->compile_count = 0;
-	coder->last_compile_start = t.tv_sec * 1000 + t.tv_usec / 1000;
+	coder->last_compile_start = get_actual_time();
 	coder->data = data;
 	coder->left_dongle = left;
 	coder->right_dongle = right;

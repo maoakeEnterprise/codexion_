@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	gettimeofday(&t, NULL);
 	printf("Starting program with argc = %d\n", argc);
-	start_time = t.tv_sec * 1000 + t.tv_usec / 1000;
+	start_time = get_actual_time();
 	if (argc == 9 && parsing(argc, argv))
 	{
 		launch_program(argv, start_time);

@@ -14,12 +14,9 @@
 
 void	set_compile_coder(t_coder *coder)
 {
-	struct timeval	t;
-
-	gettimeofday(&t, NULL);
 	pthread_mutex_lock(&coder->mutex_coder);
 	coder->compile_count++;
-	coder->last_compile_start = t.tv_sec * 1000 + t.tv_usec / 1000;
+	coder->last_compile_start = get_actual_time();
 	pthread_mutex_unlock(&coder->mutex_coder);
 }
 

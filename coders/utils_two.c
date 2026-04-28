@@ -18,7 +18,7 @@ long	calcul_time(t_data *data)
 	long			now;
 
 	gettimeofday(&t, NULL);
-	now = t.tv_sec * 1000 + t.tv_usec / 1000;
+	now = get_actual_time();
 	return (now - data->start_time);
 }
 

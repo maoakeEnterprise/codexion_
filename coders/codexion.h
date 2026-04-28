@@ -125,6 +125,7 @@ long		get_timer_coder(int id, t_coder **coders);
 void		logical_fifo(t_coder *coder, t_dongle *dongle);
 void		pop_queue(t_dongle *dongle);
 int			is_priority(t_dongle *dongle, t_coder *coder);
+long		get_actual_time();
 // FUNCTION MONITOR
 void		launch_monitor(t_coder **coders, pthread_t *thread);
 void		unlaunch_monitor(pthread_t thread);

@@ -62,7 +62,7 @@ int	is_burned(t_coder *coder)
 	long			actual_time;
 
 	gettimeofday(&t, NULL);
-	actual_time = t.tv_sec * 1000 + t.tv_usec / 1000;
+	actual_time = get_actual_time();
 	time_burnout = coder->data->time_burnout;
 	last_comp = get_last_time_comp(coder);
 	total_time = actual_time - last_comp;
