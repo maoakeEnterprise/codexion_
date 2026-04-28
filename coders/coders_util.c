@@ -20,7 +20,6 @@ void	compiling(t_coder *coder)
 	print_log(coder, "is compiling\n");
 	set_compile_coder(coder);
 	usleep(coder->data->time_compile * 1000);
-	
 }
 
 void	debugging(t_coder *coder)

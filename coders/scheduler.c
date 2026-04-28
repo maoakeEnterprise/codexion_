@@ -23,7 +23,6 @@ void	add_to_queue(t_coder *coder, t_dongle *dongle)
 	}
 	else
 		logical_fifo(coder, dongle);
-
 }
 
 void	logical_edf(t_coder *coder, t_dongle *dongle)

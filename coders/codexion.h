@@ -45,7 +45,7 @@ typedef struct s_dongle
 	int				id;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	mutex_q;
-	pthread_mutex_t mutex_avail;
+	pthread_mutex_t	mutex_avail;
 	int				available_at;
 	int				*queue;
 	int				size_q;

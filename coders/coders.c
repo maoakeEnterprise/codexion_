@@ -56,7 +56,7 @@ void	*working_coder(void *arg)
 		if (!lock_dongles(coder))
 			return (NULL);
 		if (get_simul_end(coder->data))
-			break;
+			break ;
 		compiling(coder);
 		unlock_dongles(coder);
 		debugging(coder);
@@ -75,7 +75,7 @@ void	launch_coders(t_coder **coders)
 		pthread_create(&coders[i]->thread_id, NULL, working_coder,
 			coders[i]);
 		i++;
-	};
+	}
 }
 
 void	unlaunch_coders(t_coder **coders)

@@ -15,6 +15,7 @@
 void	set_compile_coder(t_coder *coder)
 {
 	struct timeval	t;
+
 	gettimeofday(&t, NULL);
 	pthread_mutex_lock(&coder->mutex_coder);
 	coder->compile_count++;

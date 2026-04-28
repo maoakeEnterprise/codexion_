@@ -22,9 +22,9 @@ void	set_cooldown_dong(t_dongle *dongle, long new_cd)
 long	get_cooldown_dong(t_dongle *dongle)
 {
 	long	avail;
+
 	pthread_mutex_lock(&dongle->mutex_avail);
 	avail = dongle->available_at;
 	pthread_mutex_unlock(&dongle->mutex_avail);
-	return avail;
+	return (avail);
 }
-

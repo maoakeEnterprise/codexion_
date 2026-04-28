@@ -21,5 +21,5 @@ int	is_priority(t_dongle *dongle, t_coder *coder)
 	if (dongle->queue[0] == coder->id)
 		verif = 1;
 	pthread_mutex_unlock(&dongle->mutex_q);
-	return verif;
+	return (verif);
 }
