@@ -48,8 +48,8 @@ void	free_coders(t_coder **coders)
 	i = 0;
 	while (coders[i])
 	{
-		free(coders[i]);
 		pthread_mutex_destroy(&coders[i]->mutex_coder);
+		free(coders[i]);
 		i++;
 	}
 	free(coders);

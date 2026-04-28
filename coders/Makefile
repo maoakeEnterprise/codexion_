@@ -48,7 +48,7 @@ test: $(OBJ_TEST)
 # number_of_coders        time_to_burnout                    time_to_compile    time_to_debug
 # time_to_refactor        number_of_compiles_required        dongle_cooldown scheduler
 codex:
-	./$(NAME) 3 5000 200 200 200 5 100 edf
+	./$(NAME) 4 5000 200 200 200 5 100 fifo
 
 test_init: $(OBJ_TEST_INIT)
 	$(CC) $(CFLAGS) $(OBJ_TEST_INIT) -o $(NAME_TEST2)
@@ -61,10 +61,10 @@ debug: fclean
 	$(MAKE) CFLAGS=" -Wall -Werror -Wextra -pthread -fsanitize=thread -g"
 
 valgrind:
-	valgrind --tool=helgrind ./$(NAME) 4 1700 100 200 200 5 10 edf
+	valgrind --tool=helgrind ./$(NAME) 4 1700 100 200 200 5 10 fifo
 
 valgrind2:
-	valgrind --tool=drd ./$(NAME) 4 1700 100 200 200 5 10 edf
+	valgrind --tool=drd ./$(NAME) 4 1700 100 200 200 5 10 fifo
 
 norming:
 	watch norminette $(SRC) codexion.h
