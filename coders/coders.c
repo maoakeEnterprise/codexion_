@@ -55,10 +55,10 @@ void	*working_coder(void *arg)
 	{
 		if (!lock_dongles(coder))
 			return (NULL);
-		if (get_simul_end(coder->data))
-			break ;
 		compiling(coder);
 		unlock_dongles(coder);
+		if (get_simul_end(coder->data))
+			break ;
 		debugging(coder);
 		refactoring(coder);
 	}
