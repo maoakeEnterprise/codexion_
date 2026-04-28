@@ -20,19 +20,16 @@ t_dongle	*init_dongle(int id, int size)
 	if (!dongle)
 		return (NULL);
 	dongle->id = id;
-	pthread_mutex_init(&dongle->mutex, NULL);
-	pthread_mutex_init(&dongle->mutex_q, NULL);
-	pthread_mutex_init(&dongle->mutex_avail, NULL);
+	if (pthread_mutex_init(&dongle->mutex, NULL) != 0)
+		return (free_mutex_dongle(dongle, 0));
+	if (pthread_mutex_init(&dongle->mutex_q, NULL) != 0)
+		return (free_mutex_dongle(dongle, 1));
+	if (pthread_mutex_init(&dongle->mutex_avail, NULL) != 0)
+		return (free_mutex_dongle(dongle, 2));
 	dongle->available_at = 0;
 	dongle->queue = malloc((size) * sizeof(int));
 	if (!dongle->queue)
-	{
-		pthread_mutex_destroy(&dongle->mutex);
-		pthread_mutex_destroy(&dongle->mutex_q);
-		pthread_mutex_destroy(&dongle->mutex_avail);
-		free(dongle);
-		return (NULL);
-	}
+		return(free_mutex_dongle(dongle, 3));
 	dongle->size_q = 0;
 	return (dongle);
 }

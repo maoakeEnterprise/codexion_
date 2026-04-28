@@ -92,6 +92,7 @@ void		free_dongle(t_dongle *dongle);
 void		free_dongles(t_dongle **dongles);
 void		free_coders(t_coder **coders);
 void		free_all(t_data *data, t_dongle **dongles, t_coder **coders);
+t_dongle	*free_mutex_dongle(t_dongle *dongle, int step);
 // MAIN
 int			launch_program(char **argv, long start);
 void		message_error(char *message);

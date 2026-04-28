@@ -18,6 +18,18 @@ int	crash_dongle(t_data *data)
 	return (0);
 }
 
+t_dongle	*free_mutex_dongle(t_dongle *dongle, int step)
+{
+	if (step >= 1)
+		pthread_mutex_destroy(&dongle->mutex);
+	if (step >= 2)
+		pthread_mutex_destroy(&dongle->mutex_q);
+	if (step >= 3)
+		pthread_mutex_destroy(&dongle->mutex_avail);
+	free(dongle);
+	return (NULL);
+}
+
 int	crash_coders(t_data *data, t_dongle **dongles)
 {
 	free_dongles(dongles);
