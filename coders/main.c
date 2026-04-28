@@ -14,10 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	struct timeval	t;
 	long			start_time;
 
-	gettimeofday(&t, NULL);
 	printf("Starting program with argc = %d\n", argc);
 	start_time = get_actual_time();
 	if (argc == 9 && parsing(argc, argv))

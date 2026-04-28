@@ -14,10 +14,8 @@
 
 long	calcul_time(t_data *data)
 {
-	struct timeval	t;
 	long			now;
 
-	gettimeofday(&t, NULL);
 	now = get_actual_time();
 	return (now - data->start_time);
 }

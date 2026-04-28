@@ -58,10 +58,8 @@ int	is_burned(t_coder *coder)
 	long			last_comp;
 	long			time_burnout;
 	long			total_time;
-	struct timeval	t;
 	long			actual_time;
 
-	gettimeofday(&t, NULL);
 	actual_time = get_actual_time();
 	time_burnout = coder->data->time_burnout;
 	last_comp = get_last_time_comp(coder);

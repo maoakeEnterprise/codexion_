@@ -65,9 +65,7 @@ t_coder	*init_coder(t_data *data, t_dongle *left,
 	t_dongle *right, int id)
 {
 	t_coder			*coder;
-	struct timeval	t;
 
-	gettimeofday(&t, NULL);
 	coder = malloc(sizeof(t_coder));
 	if (!coder)
 		return (NULL);
