@@ -53,14 +53,17 @@ void	*working_coder(void *arg)
 		usleep(200);
 	while (!get_simul_end(coder->data))
 	{
-		if (!lock_dongles(coder))
-			return (NULL);
-		compiling(coder);
-		unlock_dongles(coder);
-		if (get_simul_end(coder->data))
-			break ;
-		debugging(coder);
-		refactoring(coder);
+		if (coder->data->nb_coders > 1)
+		{
+			if (!lock_dongles(coder))
+				return (NULL);
+			compiling(coder);
+			unlock_dongles(coder);
+			if (get_simul_end(coder->data))
+				break ;
+			debugging(coder);
+			refactoring(coder);
+		}
 	}
 	return (NULL);
 }
