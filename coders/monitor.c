@@ -42,6 +42,7 @@ void	*monitor(void *arg)
 			if (is_burned(coders[i]))
 				stop_on_burn(coders[i], data);
 			i++;
+			usleep(10);
 		}
 	}
 	return (NULL);
