@@ -31,10 +31,10 @@ codex:
 	./$(NAME) 4 80 200 200 200 5 100 fifo
 
 codex2:
-	./$(NAME) 200 190 60 60 60 5 0 edf
+	./$(NAME) 200 220 60 60 60 5 0 edf
 
 codex_clipboard:
-	./$(NAME) 200 190 60 60 60 5 0 edf | xclip -selection clipboard
+	./$(NAME) 200 220 60 60 60 5 0 edf | xclip -selection clipboard
 
 clean:
 	rm -rf $(OBJ) $(DEP) $(OBJ_TEST) $(DEP_TEST) $(OBJ_TEST_INIT) $(DEP_TEST_INIT)
@@ -46,7 +46,7 @@ valgrind:
 	valgrind --tool=helgrind ./$(NAME) 4 80 200 200 200 5 100 fifo
 
 valgrind2:
-	valgrind --tool=drd ./$(NAME) 20 1500 100 200 200 2 10 fifo
+	valgrind --tool=drd ./$(NAME) 20 400 100 200 200 2 10 fifo
 
 norming:
 	watch norminette $(SRC) coders/codexion.h
