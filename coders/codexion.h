@@ -97,6 +97,7 @@ t_dongle	*free_mutex_dongle(t_dongle *dongle, int step);
 // MAIN
 int			launch_program(char **argv, long start);
 void		message_error(char *message);
+int			launch_process(t_data *data, pthread_t *thread_monitor);
 // CRASH MALLOC
 int			crash_dongle(t_data *data);
 int			crash_coders(t_data *data, t_dongle **dongles);

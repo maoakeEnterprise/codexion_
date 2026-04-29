@@ -43,12 +43,28 @@ int	launch_program(char **argv, long start)
 	if (!coders)
 		return (crash_coders(data, dongles));
 	data->coders = coders;
-	launch_monitor(coders, &thread_monitor);
-	launch_coders(coders);
-	update_simul_end(coders);
-	unlaunch_coders(coders);
-	unlaunch_monitor(thread_monitor);
+	if (launch_process(data, &thread_monitor))
+	{
+		unlaunch_coders(coders);
+		unlaunch_monitor(thread_monitor);
+	}
 	free_all(data, dongles, coders);
+	return (1);
+}
+
+int	launch_process(t_data *data, pthread_t *thread_monitor)
+{
+	t_coder	**coders;
+
+	coders = data->coders;
+	if (!launch_monitor(coders, thread_monitor))
+		return (0);
+	if (!launch_coders(coders))
+	{
+		unlaunch_monitor(*thread_monitor);
+		return (0);
+	}
+	update_simul_end(coders);
 	return (1);
 }
 
