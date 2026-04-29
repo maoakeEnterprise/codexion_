@@ -50,7 +50,7 @@ void	*working_coder(void *arg)
 
 	coder = (void *)arg;
 	if (coder->id % 2 == 0)
-		usleep(200);
+		usleep(coder->data->dongle_cooldown);
 	while (!get_simul_end(coder->data))
 	{
 		if (coder->data->nb_coders > 1)
