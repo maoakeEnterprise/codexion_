@@ -2,8 +2,8 @@
 # ALL FILES 
 #============================
 
-SRC = main.c parsing.c init_struct.c utils.c free.c free_crash.c coders.c coders_util.c \
-	  utils_two.c monitor.c dongle.c scheduler.c utils_sheduler.c dongle_utils.c coders_util_two.c
+SRC = coders/main.c coders/parsing.c coders/init_struct.c coders/utils.c coders/free.c coders/free_crash.c coders/coders.c coders/coders_util.c \
+	  coders/utils_two.c coders/monitor.c coders/dongle.c coders/scheduler.c coders/utils_sheduler.c coders/dongle_utils.c coders/coders_util_two.c
 
 CC = cc
 
