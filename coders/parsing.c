@@ -92,7 +92,7 @@ int	parsing(int argc, char **argv)
 			return (0);
 		if (i != 8)
 		{
-			if (!text_is_digit(argv[i]))
+			if (!text_is_digit(argv[i], i))
 				return (0);
 			if (!overflow(argv[i]))
 				return (0);
