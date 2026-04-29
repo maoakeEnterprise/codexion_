@@ -68,17 +68,19 @@ void	*working_coder(void *arg)
 	return (NULL);
 }
 
-void	launch_coders(t_coder **coders)
+int	launch_coders(t_coder **coders)
 {
 	int	i;
 
 	i = 0;
 	while (coders[i])
 	{
-		pthread_create(&coders[i]->thread_id, NULL, working_coder,
-			coders[i]);
+		if (pthread_create(&coders[i]->thread_id, NULL, working_coder,
+			coders[i]) != 0)
+			return (crash_thread_coder(coders, i));
 		i++;
 	}
+	return (1);
 }
 
 void	unlaunch_coders(t_coder **coders)

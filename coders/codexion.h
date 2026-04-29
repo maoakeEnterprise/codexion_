@@ -76,6 +76,7 @@ t_dongle	**init_dongles(int nb_dongles);
 t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right, int id);
 t_data		*init_data(char **argv, long start);
 t_coder		**init_coders(t_data *data, t_dongle **dongles, int nb_coders);
+t_data 		*crash_data(t_data *data, int step);
 //	FUNCTIONS UTILS
 long		ft_atol(const char *nptr);
 int			get_len_dongles(t_dongle **dongles);
@@ -108,11 +109,12 @@ void		unlock_dongles(t_coder *coder);
 void		*working_coder(void *arg);
 int			check_compiled(t_coder **coders);
 int			is_nb_compiled(t_coder **coders);
-void		launch_coders(t_coder **coders);
+int			launch_coders(t_coder **coders);
 void		unlaunch_coders(t_coder **coders);
 int			get_compile_coder(t_coder *coder);
 void		set_compile_coder(t_coder *coder);
 long		get_last_time_comp(t_coder *coder);
+int			crash_thread_coder(t_coder **coders, int pos);
 // FUNCtiON IN DONGLE
 int			lock_dongle(t_data *data, t_dongle *dongle, t_coder *coder);
 t_dongle	*get_first_dongle(t_coder *coder);
@@ -128,7 +130,7 @@ void		pop_queue(t_dongle *dongle);
 int			is_priority(t_dongle *dongle, t_coder *coder);
 long		get_actual_time();
 // FUNCTION MONITOR
-void		launch_monitor(t_coder **coders, pthread_t *thread);
+int			launch_monitor(t_coder **coders, pthread_t *thread);
 void		unlaunch_monitor(pthread_t thread);
 void		*monitor(void *arg);
 void		stop_on_burn(t_coder *coder, t_data *data);

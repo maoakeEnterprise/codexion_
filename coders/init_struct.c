@@ -127,7 +127,9 @@ t_data	*init_data(char **argv, long start)
 	data->coders = NULL;
 	data->simul_end = 0;
 	data->start_time = start;
-	pthread_mutex_init(&data->write_mutex, NULL);
-	pthread_mutex_init(&data->data_mutex, NULL);
+	if (pthread_mutex_init(&data->write_mutex, NULL) != 0)
+		return (crash_data(data, 0));
+	if (pthread_mutex_init(&data->data_mutex, NULL) != 0)
+		return (crash_data(data, 1));
 	return (data);
 }

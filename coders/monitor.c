@@ -12,9 +12,11 @@
 
 #include "codexion.h"
 
-void	launch_monitor(t_coder **coders, pthread_t *thread)
+int	launch_monitor(t_coder **coders, pthread_t *thread)
 {
-	pthread_create(thread, NULL, monitor, coders);
+	if (pthread_create(thread, NULL, monitor, coders) != 0)
+		return (0);
+	return (1);
 }
 
 void	unlaunch_monitor(pthread_t thread)

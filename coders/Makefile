@@ -40,7 +40,7 @@ test: $(OBJ_TEST)
 # number_of_coders        time_to_burnout                    time_to_compile    time_to_debug
 # time_to_refactor        number_of_compiles_required        dongle_cooldown scheduler
 codex:
-	./$(NAME) 1 1500 200 200 200 5 100 edf
+	./$(NAME) 5 1500 200 200 200 5 100 edf
 
 clean:
 	rm -rf $(OBJ) $(DEP) $(OBJ_TEST) $(DEP_TEST) $(OBJ_TEST_INIT) $(DEP_TEST_INIT)
