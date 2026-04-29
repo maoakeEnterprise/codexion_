@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/27 20:38:28 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/29 08:28:22 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_coder
 }	t_coder;
 
 // FUNCTIONS PARSING
-int			text_is_digit(char *text);
+int			text_is_digit(char *text, int pos);
 int			text_scheduler(char *text);
 int			parsing(int argc, char **argv);
 int			is_edf(char *text);

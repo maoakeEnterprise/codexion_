@@ -6,13 +6,13 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/13 15:30:26 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/29 08:28:52 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-int	text_is_digit(char *text)
+int	text_is_digit(char *text, int pos)
 {
 	int	i;
 	int	res;
@@ -25,7 +25,7 @@ int	text_is_digit(char *text)
 		i++;
 	}
 	res = atoi(text);
-	if (res < 1)
+	if (res < 1 && (pos == 1 || pos == 2 || pos == 6))
 		return (0);
 	return (1);
 }
