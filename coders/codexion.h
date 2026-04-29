@@ -76,7 +76,7 @@ t_dongle	**init_dongles(int nb_dongles);
 t_coder		*init_coder(t_data *data, t_dongle *left, t_dongle *right, int id);
 t_data		*init_data(char **argv, long start);
 t_coder		**init_coders(t_data *data, t_dongle **dongles, int nb_coders);
-t_data 		*crash_data(t_data *data, int step);
+t_data		*crash_data(t_data *data, int step);
 //	FUNCTIONS UTILS
 long		ft_atol(const char *nptr);
 int			get_len_dongles(t_dongle **dongles);
@@ -129,7 +129,7 @@ long		get_timer_coder(int id, t_coder **coders);
 void		logical_fifo(t_coder *coder, t_dongle *dongle);
 void		pop_queue(t_dongle *dongle);
 int			is_priority(t_dongle *dongle, t_coder *coder);
-long		get_actual_time();
+long		get_actual_time(void);
 // FUNCTION MONITOR
 int			launch_monitor(t_coder **coders, pthread_t *thread);
 void		unlaunch_monitor(pthread_t thread);

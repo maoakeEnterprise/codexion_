@@ -38,7 +38,7 @@ void	*monitor(void *arg)
 		while (coders[i])
 		{
 			if (get_simul_end(data))
-				break;
+				break ;
 			if (is_burned(coders[i]))
 				stop_on_burn(coders[i], data);
 			i++;

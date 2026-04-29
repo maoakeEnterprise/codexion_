@@ -29,7 +29,7 @@ t_dongle	*init_dongle(int id, int size)
 	dongle->available_at = 0;
 	dongle->queue = malloc((size) * sizeof(int));
 	if (!dongle->queue)
-		return(free_mutex_dongle(dongle, 3));
+		return (free_mutex_dongle(dongle, 3));
 	dongle->size_q = 0;
 	return (dongle);
 }

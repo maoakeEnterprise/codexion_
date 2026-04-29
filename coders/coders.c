@@ -76,7 +76,7 @@ int	launch_coders(t_coder **coders)
 	while (coders[i])
 	{
 		if (pthread_create(&coders[i]->thread_id, NULL, working_coder,
-			coders[i]) != 0)
+				coders[i]) != 0)
 			return (crash_thread_coder(coders, i));
 		i++;
 	}

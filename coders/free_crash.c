@@ -37,7 +37,7 @@ int	crash_coders(t_data *data, t_dongle **dongles)
 	return (0);
 }
 
-t_data *crash_data(t_data *data, int step)
+t_data	*crash_data(t_data *data, int step)
 {
 	if (step == 1)
 		pthread_mutex_destroy(&data->write_mutex);

@@ -23,7 +23,8 @@ int	is_priority(t_dongle *dongle, t_coder *coder)
 	pthread_mutex_unlock(&dongle->mutex_q);
 	return (verif);
 }
-long	get_actual_time()
+
+long	get_actual_time(void)
 {
 	struct timeval	t;
 
