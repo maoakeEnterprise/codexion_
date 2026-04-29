@@ -31,7 +31,7 @@ codex:
 	./$(NAME) 4 80 200 200 200 5 100 fifo
 
 codex2:
-	./$(NAME) 50 190 60 60 60 5 0 edf
+	./$(NAME) 200 190 60 60 60 5 0 edf
 
 clean:
 	rm -rf $(OBJ) $(DEP) $(OBJ_TEST) $(DEP_TEST) $(OBJ_TEST_INIT) $(DEP_TEST_INIT)
