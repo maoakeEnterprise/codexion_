@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:02:16 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/29 08:28:52 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/30 20:49:38 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	text_is_digit(char *text, int pos)
 	return (1);
 }
 
-static int	overflow(const char *nptr)
+static int	overflow(const char *str)
 {
 	size_t	i;
 	int		tmp;
@@ -39,16 +39,16 @@ static int	overflow(const char *nptr)
 	i = 0;
 	tmp = 0;
 	before = 0;
-	if (strncmp(nptr, "-2147483648", 15))
+	if (strcmp(str, "-2147483648"))
 		return (1);
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == ' ')
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		before = tmp;
-		tmp = tmp * 10 + nptr[i] - '0';
+		tmp = tmp * 10 + str[i] - '0';
 		if (before > tmp)
 			return (0);
 		i++;

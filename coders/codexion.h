@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/29 08:28:22 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/30 20:50:44 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ typedef struct s_coder	t_coder;
 
 typedef struct s_data
 {
-	int				nb_coders;
-	long			time_burnout;
-	long			time_compile;
-	long			time_debug;
-	long			time_refactor;
-	int				nb_compile_required;
-	long			dongle_cooldown;
+	int			nb_coders;
+	int			time_burnout;
+	int			time_compile;
+	int			time_debug;
+	int			time_refactor;
+	int			nb_compile_required;
+	int			dongle_cooldown;
 	int				is_edf;
 
 	long			start_time;
@@ -78,7 +78,6 @@ t_data		*init_data(char **argv, long start);
 t_coder		**init_coders(t_data *data, t_dongle **dongles, int nb_coders);
 t_data		*crash_data(t_data *data, int step);
 //	FUNCTIONS UTILS
-long		ft_atol(const char *nptr);
 int			get_len_dongles(t_dongle **dongles);
 t_dongle	*dongle_left(t_dongle **dongles, int id_coder);
 t_dongle	*dongle_right(t_dongle **dongles, int id_coder);
