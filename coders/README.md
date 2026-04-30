@@ -49,6 +49,7 @@ Example runs are provided in the Makefile:
 - **42 School Resources**: General C programming and Unix system programming guides
 
 AI was used for:
+- Guidance during the whole project
 - Debugging assistance for thread synchronization issues
 - Assistance on the README
 
