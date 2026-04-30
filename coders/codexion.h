@@ -6,7 +6,7 @@
 /*   By: mteriier <mteriier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 16:04:12 by mteriier          #+#    #+#             */
-/*   Updated: 2026/04/30 20:50:44 by mteriier         ###   ########.fr       */
+/*   Updated: 2026/04/30 21:05:33 by mteriier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ typedef struct s_coder	t_coder;
 
 typedef struct s_data
 {
-	int			nb_coders;
-	int			time_burnout;
-	int			time_compile;
-	int			time_debug;
-	int			time_refactor;
-	int			nb_compile_required;
-	int			dongle_cooldown;
+	int				nb_coders;
+	int				time_burnout;
+	int				time_compile;
+	int				time_debug;
+	int				time_refactor;
+	int				nb_compile_required;
+	int				dongle_cooldown;
 	int				is_edf;
 
 	long			start_time;
