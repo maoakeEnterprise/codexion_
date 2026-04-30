@@ -31,10 +31,13 @@ codex:
 	./$(NAME) 4 80 200 200 200 5 100 fifo
 
 codex2:
-	./$(NAME) 200 220 60 60 60 5 0 edf
+	./$(NAME) 200 190 60 60 60 500 0 edf
 
-codex_clipboard:
+clipboard:
 	./$(NAME) 200 220 60 60 60 5 0 edf | xclip -selection clipboard
+
+wayland:
+	./$(NAME) 200 190 60 60 60 500 0 edf | wl-copy
 
 clean:
 	rm -rf $(OBJ) $(DEP) $(OBJ_TEST) $(DEP_TEST) $(OBJ_TEST_INIT) $(DEP_TEST_INIT)
